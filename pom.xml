@@ -66,6 +66,27 @@
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-crypto</artifactId>
 		</dependency>
+		
+		<!-- Spring Boot Starter Thymeleaf (用于视图渲染) -->
+	    <dependency>
+	        <groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot-starter-thymeleaf</artifactId>
+	    </dependency>
+	    
+	    <!-- Hutool -->
+		<dependency>
+		    <groupId>cn.hutool</groupId>
+		    <artifactId>hutool-all</artifactId>
+		    <version>5.7.14</version>
+		</dependency>
+			
+		<!-- JustAuth 微信依赖 -->
+		<dependency>
+		    <groupId>me.zhyd.oauth</groupId>
+		    <artifactId>JustAuth</artifactId>
+		    <version>1.16.5</version> <!-- 最新版本号 -->
+		</dependency>
+
 	</dependencies>
 
 	<build>
