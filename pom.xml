@@ -41,6 +41,11 @@
 		    <artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
 		
+		<dependency>
+	        <groupId>redis.clients</groupId>
+	        <artifactId>jedis</artifactId>
+	    </dependency>
+		
 		<!-- Spring Boot Starter JDBC -->
 		<dependency>
 		    <groupId>org.springframework.boot</groupId>
@@ -85,6 +90,14 @@
 		    <groupId>me.zhyd.oauth</groupId>
 		    <artifactId>JustAuth</artifactId>
 		    <version>1.16.5</version> <!-- 最新版本号 -->
+		</dependency>
+
+		
+		<!-- Aliyun Java SDK Core -->
+		<dependency>
+		    <groupId>com.aliyun</groupId>
+		    <artifactId>aliyun-java-sdk-core</artifactId>
+		    <version>4.5.1</version> 
 		</dependency>
 
 	</dependencies>
