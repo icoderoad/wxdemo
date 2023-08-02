@@ -17,6 +17,10 @@
 		<java.version>1.8</java.version>
 		<mysql-connector-java.version>8.0.33</mysql-connector-java.version>
 		<mybatis-plus-boot-starter.version>3.5.3.1</mybatis-plus-boot-starter.version>
+		<kaptcha.version>2.3.2</kaptcha.version>
+		<hutool-all.version>5.7.14</hutool-all.version>
+		<JustAuth.version>1.16.5</JustAuth.version>
+		<aliyun-java-sdk-core.version>4.5.1</aliyun-java-sdk-core.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -82,14 +86,14 @@
 		<dependency>
 		    <groupId>cn.hutool</groupId>
 		    <artifactId>hutool-all</artifactId>
-		    <version>5.7.14</version>
+		    <version>${hutool-all.version}</version>
 		</dependency>
 			
 		<!-- JustAuth 微信依赖 -->
 		<dependency>
 		    <groupId>me.zhyd.oauth</groupId>
 		    <artifactId>JustAuth</artifactId>
-		    <version>1.16.5</version> <!-- 最新版本号 -->
+		    <version>${JustAuth.version}</version> <!-- 最新版本号 -->
 		</dependency>
 
 		
@@ -97,9 +101,16 @@
 		<dependency>
 		    <groupId>com.aliyun</groupId>
 		    <artifactId>aliyun-java-sdk-core</artifactId>
-		    <version>4.5.1</version> 
+		    <version>${aliyun-java-sdk-core.version}</version> 
 		</dependency>
-
+		
+		<!-- Kaptcha -->
+		<dependency>
+		    <groupId>com.github.penggle</groupId>
+		    <artifactId>kaptcha</artifactId>
+		    <version>${kaptcha.version}</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
