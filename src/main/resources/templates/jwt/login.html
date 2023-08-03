@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>登录页</title>
+</head>
+<body>
+    <h1>用户登录</h1>
+    <h3>测试用户名: admin   密码： 123456</h3>
+     <form id="loginForm">
+        <label for="username">用户名:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">密码:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">登陆</button>
+    </form>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // 获取用户输入的用户名和密码
+            const userName = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // 构建登录信息对象
+            const loginData = {
+            	userName: userName,
+                password: password
+            };
+
+            // 向后端发送登录请求
+            fetch("/api/jwt/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(loginData)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("登陆失败");
+                }
+                return response.text(); // 获取后端返回的 JWT Token
+            })
+            .then(token => {
+                // 将 JWT Token 存储在 Cookie 或 LocalStorage 中
+                // 这里简化为存储在 LocalStorage，实际应用中请注意安全性和合适的存储方式
+                localStorage.setItem("jwtToken", token);
+                if(confirm("登陆成功,是否查看用户详细信息?")){
+                	//转到用户详情页面或其他需要用户认证的页面
+                	window.location.href="/jwt/user-details";
+                }
+                
+            })
+            .catch(error => {
+                console.error("登陆错误:", error);
+                alert("登陆失败,请检查用户名及密码是否正确.");
+            });
+        });
+    </script>
+</body>
+</html>

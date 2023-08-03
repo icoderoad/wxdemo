@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>用户详情页</title>
+</head>
+<body>
+    <h1>用户详情页</h1>
+    <div id="userInfo"></div>
+
+    <script>
+        // 获取存储在 LocalStorage 中的 JWT Token
+        const jwtToken = localStorage.getItem("jwtToken");
+
+        // 向后端请求获取用户详情
+        fetch("/api/jwt/user/info", {
+            method: "GET",
+            headers: {
+                "Authorization": jwtToken // 将 JWT Token 添加到请求头部
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Not authorized");
+            }
+            return response.json(); // 解析后端返回的用户详情数据
+        })
+        .then(user => {
+            // 显示用户详情信息
+            const userInfoDiv = document.getElementById("userInfo");
+            userInfoDiv.innerHTML = `
+                <p><strong>用户ID:</strong> ${user.id}</p>
+                <p><strong>用户名:</strong> ${user.userName}</p>
+                <p><strong>昵称:</strong> ${user.nickName}</p>
+                <p><strong>创建时间:</strong> ${user.createTime}</p>
+            `;
+        })
+        .catch(error => {
+            console.error("获取用户信息失败:", error.message);
+            alert("获取用户信息失败，请检查登陆状态.");
+            // TODO: 可以根据实际需求进行错误处理或跳转到登录页面
+        });
+    </script>
+</body>
+</html>

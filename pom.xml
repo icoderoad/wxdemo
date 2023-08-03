@@ -21,6 +21,7 @@
 		<hutool-all.version>5.7.14</hutool-all.version>
 		<JustAuth.version>1.16.5</JustAuth.version>
 		<aliyun-java-sdk-core.version>4.5.1</aliyun-java-sdk-core.version>
+		<nimbus-jose-jwt.version>9.31</nimbus-jose-jwt.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -110,7 +111,15 @@
 		    <artifactId>kaptcha</artifactId>
 		    <version>${kaptcha.version}</version>
 		</dependency>
+
 		
+		<!-- Nimbus JOSE + JWT -->
+		<dependency>
+		    <groupId>com.nimbusds</groupId>
+		    <artifactId>nimbus-jose-jwt</artifactId>
+		    <version>${nimbus-jose-jwt.version}</version>
+		</dependency>
+    
 	</dependencies>
 
 	<build>
