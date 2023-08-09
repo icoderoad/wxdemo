@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户仪表盘</title>
+</head>
+<body>
+    <h1>欢迎来到仪表盘</h1>
+    <div>
+        <p>你好，<span th:text="${user.username}"></span>！</p>
+        <a href="/rm/logout">注销</a>
+    </div>
+</body>
+</html>
