@@ -5,7 +5,8 @@ import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -32,7 +33,8 @@ public class AuthService {
     private JwtConfig jwtConfig;
     
     @Autowired
-    private  BCryptPasswordEncoder bCryptPasswordEncoder;;
+    @Lazy
+    private  PasswordEncoder passwordEncoder;;
 
     public Optional<JwtUser> verifyUser(String userName, String password) {
         // 根据用户名查询数据库中的用户信息
@@ -41,7 +43,7 @@ public class AuthService {
         JwtUser user = jwtUserMapper.selectOne(queryWrapper);
 
         // 验证用户密码是否正确
-        if (user != null && bCryptPasswordEncoder.matches(password, user.getPassword())) {
+        if (user != null && passwordEncoder.matches(password, user.getPassword())) {
             return Optional.of(user);
         } else {
             return Optional.empty();

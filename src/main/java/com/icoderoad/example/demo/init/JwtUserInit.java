@@ -2,8 +2,10 @@ package com.icoderoad.example.demo.init;
 
 import java.time.LocalDateTime;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -13,13 +15,12 @@ import com.icoderoad.example.demo.mapper.JwtUserMapper;
 @Component
 public class JwtUserInit implements CommandLineRunner {
 
-    private final JwtUserMapper jwtUserMapper;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
-
-    public JwtUserInit(JwtUserMapper jwtUserMapper, BCryptPasswordEncoder bCryptPasswordEncoder) {
-        this.jwtUserMapper = jwtUserMapper;
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-    }
+	@Autowired
+    private JwtUserMapper jwtUserMapper;
+	
+	@Autowired
+	@Qualifier("passwordEncoder")
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public void run(String... args) throws Exception {
@@ -31,7 +32,7 @@ public class JwtUserInit implements CommandLineRunner {
         if (jwtUserMapper.selectOne(queryWrapper) == null) {
             JwtUser user = new JwtUser();
             user.setUserName(username);
-            user.setPassword(bCryptPasswordEncoder.encode(password)); // 使用 BCrypt 对密码进行加密
+            user.setPassword(passwordEncoder.encode(password)); // 使用 BCrypt 对密码进行加密
             user.setNickName("管理员");
             user.setCreateTime(LocalDateTime.now());
             jwtUserMapper.insert(user);
