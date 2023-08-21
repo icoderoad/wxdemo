@@ -23,6 +23,7 @@
 		<aliyun-java-sdk-core.version>4.5.1</aliyun-java-sdk-core.version>
 		<nimbus-jose-jwt.version>9.31</nimbus-jose-jwt.version>
 		<jackson-datatype-jsr310.version>2.13.0</jackson-datatype-jsr310.version>
+		<jjwt.version>0.11.2</jjwt.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -148,6 +149,25 @@
 		    <groupId>com.fasterxml.jackson.datatype</groupId>
 		    <artifactId>jackson-datatype-jsr310</artifactId>
 		</dependency>
+		
+		 <!-- JJWT (Java JWT) -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>${jjwt.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>${jjwt.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>${jjwt.version}</version>
+            <scope>runtime</scope>
+        </dependency>
 
 	</dependencies>
 

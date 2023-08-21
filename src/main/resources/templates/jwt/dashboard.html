@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>仪表盘</title>
+</head>
+<body>
+    <h1>仪表盘</h1>
+    <p>欢迎来到仪表盘。</p>
+    <p>用户名: <span id="username"></span></p>
+    <script th:inline="javascript">
+        var jwtToken = /*[[${jwtToken}]]*/ '';
+        if (jwtToken) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/api/user-info', true);
+            xhr.setRequestHeader('Authorization', 'Bearer ' + jwtToken);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var userInfo = JSON.parse(xhr.responseText);
+                    document.getElementById('username').textContent = userInfo.username;
+                }
+            };
+            xhr.send();
+        }
+    </script>
+    
+</body>
+</html>
