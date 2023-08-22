@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户资料</title>
+</head>
+<body>
+<h2>用户资料</h2>
+<p>欢迎来到您的个人资料页面，<span th:text="${#request.userPrincipal.name}"></span>！！</p>
+<a th:href="@{/logout}">登出</a>
+</body>
+</html>
