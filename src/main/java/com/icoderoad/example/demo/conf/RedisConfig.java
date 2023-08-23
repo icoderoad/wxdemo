@@ -1,9 +1,12 @@
 package com.icoderoad.example.demo.conf;
 
-
+import org.redisson.Redisson;
+import org.redisson.api.RedissonClient;
+import org.redisson.config.Config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -26,6 +29,12 @@ public class RedisConfig {
 
     @Value("${spring.redis.port}")
     private int redisPort;
+   
+    @Value("${redisson.address}")
+    private String redissonAddress;
+    
+    @Value("${redisson.password}")
+    private String redissonPassword;
 
     @Bean
     public JedisConnectionFactory jedisConnectionFactory() {
@@ -63,5 +72,14 @@ public class RedisConfig {
     @Bean
     public RedisSerializer<Goods> goodsRedisSerializer() {
         return new Jackson2JsonRedisSerializer<>(Goods.class);
+    }
+    
+    @Bean
+    public RedissonClient redissonClient() {
+        Config config = new Config();
+        config.useSingleServer()
+              .setAddress(redissonAddress)
+              .setPassword(redissonPassword);
+        return Redisson.create(config);
     }
 }
