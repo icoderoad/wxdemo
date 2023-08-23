@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户详细信息</title>
+</head>
+<body>
+    <h1>用户详细信息</h1>
+    <div th:if="${user}">
+        <h2>您好, <span th:text="${user.nickname}"></span>!</h2>
+        <p>用户名: <span th:text="${user.username}"></span></p>
+        <p>邮箱: <span th:text="${user.email}"></span></p>
+      
+        <form th:action="@{/logout}" method="post">
+            <button type="submit">退出</button>
+        </form>
+    </div>
+    <div th:unless="${user}">
+        <p>用户已退出.</p>
+    </div>
+</body>
+</html>

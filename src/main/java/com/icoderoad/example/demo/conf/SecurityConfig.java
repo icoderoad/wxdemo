@@ -22,6 +22,9 @@ import com.icoderoad.example.demo.filter.JwtAuthenticationFilter;
 import com.icoderoad.example.demo.service.RemberMeDetailsService;
 import com.icoderoad.example.demo.service.SecUserDetailsService;
 
+import me.zhyd.oauth.config.AuthDefaultSource;
+import me.zhyd.oauth.request.AuthGiteeRequest;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -52,19 +55,25 @@ public class SecurityConfig {
 		http.csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 				.authorizeRequests().antMatchers("/jwt/login").permitAll()
 				.antMatchers("/view/jwt/**").permitAll()
+				.antMatchers("/oauth2/login").permitAll()
 				.antMatchers("/remberme/login").permitAll()
 				.antMatchers("/sec/admin/**").hasRole("ADMIN") // 需要ADMIN角色才能访问/admin路径
 				.antMatchers("/sec/user/**").hasRole("USER") // 需要USER角色才能访问/user路径
 //				.and().formLogin().loginPage("/sec/login") // 登录页的URL
-				.and().formLogin().loginPage("/remberme/login") // 登录页的URL
+//				.and().formLogin().loginPage("/remberme/login") // 登录页的URL
 //				.defaultSuccessUrl("/sec/default", true) // 登录成功后的默认跳转页（根据角色）
-				.defaultSuccessUrl("/remberme/profile") 
+//				.defaultSuccessUrl("/remberme/profile") 
 				.and()
 	            .rememberMe()
 	                .tokenRepository(tokenRepository())
 	                .tokenValiditySeconds(604800) // 设置记住登录的有效时间，这里是一周 一周（7 天 * 24 小时 * 60 分钟 * 60 秒）
 	                .userDetailsService(userDetailsService())
-				.and().logout().permitAll();
+				.and().logout().permitAll()
+				.and().oauth2Login()
+				 .loginPage("/oauth2/login") // 指向自定义的登录页面
+		         .defaultSuccessUrl("/auth/gitee/callback", true) // 认证成功后的重定向
+				;
+		
 		// jwt 配置
 		// 禁用缓存
 		/*http.headers().cacheControl();
