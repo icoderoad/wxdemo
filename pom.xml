@@ -24,6 +24,9 @@
 		<nimbus-jose-jwt.version>9.31</nimbus-jose-jwt.version>
 		<jackson-datatype-jsr310.version>2.13.0</jackson-datatype-jsr310.version>
 		<jjwt.version>0.11.2</jjwt.version>
+		<redisson.version>3.23.3</redisson.version>
+		<javax.mail.version>1.6.2</javax.mail.version>
+		<opencsv.version>5.5.2</opencsv.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -177,7 +180,7 @@
 		<dependency>
 		    <groupId>org.redisson</groupId>
 		    <artifactId>redisson</artifactId>
-		    <version>3.23.3</version> 
+		    <version>${redisson.version}</version> 
 		</dependency>
 		
 		<dependency>
@@ -188,7 +191,13 @@
 		<dependency>
 		    <groupId>com.sun.mail</groupId>
 		    <artifactId>javax.mail</artifactId>
-		    <version>1.6.2</version>
+		    <version>${javax.mail.version}</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.opencsv</groupId>
+		    <artifactId>opencsv</artifactId>
+		    <version>${opencsv.version}</version> 
 		</dependency>
 		
 	</dependencies>
