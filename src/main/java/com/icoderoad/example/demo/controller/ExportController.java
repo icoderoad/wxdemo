@@ -1,15 +1,16 @@
 package com.icoderoad.example.demo.controller;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.icoderoad.example.demo.service.CouponService;
+import com.lowagie.text.DocumentException;
 
 @Controller
 public class ExportController {
@@ -26,6 +27,15 @@ public class ExportController {
         //生成导出 CSV 文件
         couponService.exportCouponsToCSV(response);
 
+    }
+    
+    @GetMapping("/export-coupons/pdf")
+    public void exportCouponsPdf(HttpServletResponse response) throws IOException, DocumentException {
+        String fileName = "coupons.pdf"; 
+        response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
+        response.setContentType("application/pdf; charset=UTF-8");
+
+        couponService.exportCouponsToPDF(response);
     }
     
     @GetMapping("/export-test")

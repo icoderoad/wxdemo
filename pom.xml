@@ -27,6 +27,7 @@
 		<redisson.version>3.23.3</redisson.version>
 		<javax.mail.version>1.6.2</javax.mail.version>
 		<opencsv.version>5.5.2</opencsv.version>
+		<openpdf.version>1.3.30</openpdf.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -198,6 +199,12 @@
 		    <groupId>com.opencsv</groupId>
 		    <artifactId>opencsv</artifactId>
 		    <version>${opencsv.version}</version> 
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.github.librepdf</groupId>
+		    <artifactId>openpdf</artifactId>
+		    <version>${openpdf.version}</version> <!-- Use the latest version -->
 		</dependency>
 		
 	</dependencies>
