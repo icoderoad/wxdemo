@@ -9,6 +9,10 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -101,6 +105,49 @@ public class CouponService {
         }
 
         System.out.println("优惠券导出 PDF 文件成功!");
+    }
+    
+    //导出excel优惠券
+    public void exportCouponsToExcel(HttpServletResponse response) throws IOException {
+        Workbook workbook = new XSSFWorkbook();
+        Sheet sheet = workbook.createSheet("Coupons");
+
+        List<Coupon> coupons = couponMapper.selectList(new QueryWrapper<>());
+        // 添加标题行
+        String[] columns = {"ID", "优惠券代码", "优惠券值", "过期时间"};
+        Row headerRow = sheet.createRow(0);
+        for (int i = 0; i < columns.length; i++) {
+        	 org.apache.poi.ss.usermodel.Cell cell = headerRow.createCell(i);
+            cell.setCellValue(columns[i]);
+        }
+
+        int rowNum = 1; // 从第二行开始，略过标题行
+
+        for (Coupon coupon : coupons) {
+            Row row = sheet.createRow(rowNum++);
+            int colNum = 0;
+
+            org.apache.poi.ss.usermodel.Cell cellId = row.createCell(colNum++);
+            cellId.setCellValue(coupon.getId());
+
+            org.apache.poi.ss.usermodel. Cell cellCode = row.createCell(colNum++);
+            cellCode.setCellValue(coupon.getCode());
+
+            org.apache.poi.ss.usermodel.Cell cellValue = row.createCell(colNum++);
+            cellValue.setCellValue(coupon.getValue().doubleValue());
+
+            org.apache.poi.ss.usermodel.Cell cellExpiryDate = row.createCell(colNum++);
+            cellExpiryDate.setCellValue(coupon.getExpiryDate().toString());
+        }
+
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        response.setHeader("Content-Disposition", "attachment; filename=coupons.xlsx");
+        response.setStatus(HttpServletResponse.SC_OK);
+
+        workbook.write(response.getOutputStream());
+        workbook.close();
+
+        System.out.println("优惠券导出 Excel 文件成功!");
     }
     
     public boolean isCouponExpired(String code) {
