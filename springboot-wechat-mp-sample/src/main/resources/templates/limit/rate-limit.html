@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>限流测试页</title>
+</head>
+<body>
+    <h1>限流测试页</h1>
+    <button onclick="sendRequest()">发送请求</button>
+    <p id="response"></p>
+
+    <script>
+        function sendRequest() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "/limitApi", true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    document.getElementById("response").textContent = xhr.responseText;
+                }
+            };
+            xhr.send();
+        }
+    </script>
+</body>
+</html>
