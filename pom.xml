@@ -19,6 +19,7 @@
     	<module>springboot-ratelimit-aspect-redis</module>
     	<module>springboot-wechat-mp-sample</module>
     	<module>springboot-forgot-password</module>
+    	<module>springboot-redis-coupon</module>
     </modules>
      <packaging>pom</packaging>
 	<properties>
