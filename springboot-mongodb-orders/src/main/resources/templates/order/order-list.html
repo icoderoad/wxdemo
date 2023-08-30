@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>订单列表</title>
+    <!-- 引入 Bootstrap 的 CSS 文件 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<div  class="container">
+	    <h1>订单列表</h1>
+	    <table class="table table-striped">
+	        <thead>
+	            <tr>
+	                <th>订单 ID</th>
+	                <th>订单日期</th>
+	                <th>客户 ID</th>
+	                <th>价格</th>
+	                <th>产品名</th>
+	                <th>产品描述</th>
+	                <th>订单状态</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <tr th:each="order : ${orders.content}">
+	                <td th:text="${order.order_id}"></td>
+	                <td th:text="${order.formattedOrderDate}"></td>
+	                <td th:text="${order.customer_id}"></td>
+	                <td th:text="${order.price}"></td>
+	                <td th:text="${order.product.name}"></td>
+	                <td th:text="${order.product.description}"></td>
+	                <td th:text="${order.order_status} ? '已完成' : '进行中'"></td>
+	            </tr>
+	        </tbody>
+	    </table>
+	    <div th:replace="order/pagination :: pagination"></div>
+    </div>
+</body>
+</html>
