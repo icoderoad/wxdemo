@@ -68,6 +68,12 @@
 		    <artifactId>openpdf</artifactId>
 		    <version>${openpdf.version}</version> <!-- Use the latest version -->
 		</dependency>
+		
+		<dependency>
+		    <groupId>org.apache.poi</groupId>
+		    <artifactId>poi-ooxml</artifactId>
+		    <version>${poi-ooxml.version}</version> 
+		</dependency>
 
 	</dependencies>
 

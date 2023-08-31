@@ -41,6 +41,16 @@ public class ExportController {
         couponService.exportCouponsToPDF(response);
     }
     
+    //生成导出 excel 文件
+    @GetMapping("/export-coupons/excel")
+    public void exportCouponsExcel(HttpServletResponse response) throws IOException {
+        String fileName = "coupons.xlsx"; 
+        response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+    
+        couponService.exportCouponsToExcel(response);
+    }
+    
     @GetMapping("/export-test")
     public String exportTestPage(Model model) {
         return "/coupon/export-test"; 
