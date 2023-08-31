@@ -1,5 +1,7 @@
 package com.icoderoad.example.coupon.controller;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.icoderoad.example.coupon.service.CouponService;
+import com.lowagie.text.DocumentException;
 
 
 @Controller
@@ -17,15 +20,25 @@ public class ExportController {
     @Autowired
     private CouponService couponService;
     
+    //生成导出 CSV 文件
     @GetMapping("/export-coupons/csv")
     public void exportCoupons(HttpServletResponse response) {
         
         String fileName = "coupons.csv";
         response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
         response.setContentType("text/csv; charset=UTF-8");
-        //生成导出 CSV 文件
         couponService.exportCouponsToCSV(response);
     
+    }
+    
+    //生成导出 pdf 文件
+    @GetMapping("/export-coupons/pdf")
+    public void exportCouponsPdf(HttpServletResponse response) throws IOException, DocumentException {
+        String fileName = "coupons.pdf"; 
+        response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
+        response.setContentType("application/pdf; charset=UTF-8");
+        
+        couponService.exportCouponsToPDF(response);
     }
     
     @GetMapping("/export-test")

@@ -63,6 +63,12 @@
 		    <version>${opencsv.version}</version> 
 		</dependency>
 
+		<dependency>
+		    <groupId>com.github.librepdf</groupId>
+		    <artifactId>openpdf</artifactId>
+		    <version>${openpdf.version}</version> <!-- Use the latest version -->
+		</dependency>
+
 	</dependencies>
 
 	<build>

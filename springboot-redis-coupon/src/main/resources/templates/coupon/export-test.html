@@ -7,6 +7,16 @@
 </head>
 <body>
     <h2>导出 CSV 文件测试</h2>
-    <a th:href="@{/export-coupons/csv}" class="btn btn-secondary">导出CSV优惠券</a>
+   
+    <div class="container text-center">
+		  <div class="row">
+		    <div class="col">
+		       <a th:href="@{/export-coupons/csv}" class="btn btn-secondary">导出CSV优惠券</a>
+		    </div>
+		    <div class="col">
+		      	<a th:href="@{/export-coupons/pdf}" class="btn btn-danger" >导出PDF优惠券</a>
+		    </div>
+		  </div>
+	</div>
 </body>
 </html>

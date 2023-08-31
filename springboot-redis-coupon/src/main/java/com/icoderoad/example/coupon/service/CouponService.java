@@ -16,6 +16,13 @@ import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.icoderoad.example.coupon.entity.Coupon;
 import com.icoderoad.example.coupon.mapper.CouponMapper;
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.Font;
+import com.lowagie.text.PageSize;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.pdf.BaseFont;
+import com.lowagie.text.pdf.PdfWriter;
 
 @Service
 public class CouponService {
@@ -85,5 +92,29 @@ public class CouponService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    //导出pdf优惠券
+    public void exportCouponsToPDF(HttpServletResponse response) throws IOException, DocumentException {
+        try (Document document = new Document(PageSize.A4)) {
+            PdfWriter.getInstance(document, response.getOutputStream());
+            document.open();
+            
+            //支持导出文件中包含中文
+            BaseFont bfChinese = BaseFont.createFont("STSong-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED); // 使用中文字体
+            Font fontChinese = new Font(bfChinese, 12, Font.NORMAL);
+            
+            List<Coupon> coupons = couponMapper.selectList(new QueryWrapper<>());
+            for (Coupon coupon : coupons) {
+                String couponInfo = "ID: " + coupon.getId() + "\n"
+                        + "优惠券代码: " + coupon.getCode() + "\n"
+                        + "优惠券值: " + coupon.getValue() + "\n"
+                        + "过期时间: " + coupon.getExpiryDate() + "\n\n";
+                Paragraph paragraph = new Paragraph(couponInfo, fontChinese); // 使用中文字体
+                document.add(paragraph);
+            }
+        }
+    
+        System.out.println("优惠券导出 PDF 文件成功!");
     }
 }
