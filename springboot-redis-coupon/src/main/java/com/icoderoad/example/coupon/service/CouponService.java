@@ -1,9 +1,13 @@
 package com.icoderoad.example.coupon.service;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -60,5 +64,26 @@ public class CouponService {
 
         LocalDateTime currentTime = LocalDateTime.now();
         return coupon.getExpiryDate().isBefore(currentTime);
+    }
+    
+    //导出csv优惠券
+    public void exportCouponsToCSV(HttpServletResponse response) {
+        try (PrintWriter writer = response.getWriter()) {
+            writer.println("ID,优惠券代码,优惠券值,过期时间");
+    
+            List<Coupon> coupons = couponMapper.selectList(new QueryWrapper<>());
+            for (Coupon coupon : coupons) {
+                writer.println(
+                    coupon.getId() + ","
+                    + coupon.getCode() + ","
+                    + coupon.getValue() + ","
+                    + coupon.getExpiryDate()
+                );
+            }
+    
+            System.out.println("优惠券导出 CSV 文件成功!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -28,12 +28,10 @@
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
         
-        
 		<dependency>
 	        <groupId>redis.clients</groupId>
 	        <artifactId>jedis</artifactId>
 	    </dependency>
-	    
 
         <!-- Spring Boot Starter AOP -->
         <dependency>
@@ -52,6 +50,19 @@
 		    <artifactId>mysql-connector-java</artifactId>
 		    <version>${mysql-connector-java.version}</version> 
 		</dependency>
+		
+		   <!-- Thymeleaf -->
+	    <dependency>
+	        <groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot-starter-thymeleaf</artifactId>
+	    </dependency>
+
+		<dependency>
+		    <groupId>com.opencsv</groupId>
+		    <artifactId>opencsv</artifactId>
+		    <version>${opencsv.version}</version> 
+		</dependency>
+
 	</dependencies>
 
 	<build>
