@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <h1>您好，[[${username}]]！</h1>
+    <p>以下是您的附件：</p>
+    <p th:each="attachment : ${attachments}">
+        <a th:href="${'cid:' + attachment.contentId}" th:text="${attachment.name}"></a>
+    </p>
+</body>
+</html>

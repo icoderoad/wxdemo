@@ -14,6 +14,7 @@
 	<name>demo</name>
 	<description>icoderoad Demo project for Spring Boot</description>
 	 <modules>
+	 	<module>springboot-email-attachment</module>
 	 	<module>springboot-mongodb-orders</module>
     	<module>springboot-async-scheduled</module>
     	<module>springboot-ratelimit-aspect-redis</module>
