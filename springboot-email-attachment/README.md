@@ -134,7 +134,7 @@ public class EmailService {
         helper.setText(content, true);
 
         for (Attachment attachment : attachments) {
-            helper.addInline(attachment.getContentId(), new ByteArrayResource(attachment.getData()), attachment.getContentType());
+              helper.addAttachment(attachment.getName(), new ByteArrayResource(attachment.getData()), attachment.getContentType());
         }
 
         javaMailSender.send(message);
@@ -251,4 +251,4 @@ public class EmailController {
 </html>
 ```
 
-启动 Spring Boot 应用后，访问 http://localhost:8080，显示发送邮件表单，输入收件人，主题、用户名及附件，点击发送按钮，登录收件人邮箱，查看接收邮件内容。
+确保你的 Spring Boot 应用的依赖中包含了 Thymeleaf、Spring Boot Starter Mail 等必要的依赖。
