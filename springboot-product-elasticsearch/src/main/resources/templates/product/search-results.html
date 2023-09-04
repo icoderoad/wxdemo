@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品搜索</title>
+
+    <!-- 添加Bootstrap CDN链接 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1>商品搜索</h1>
+    <form action="/search" method="GET">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="输入商品关键字" name="keyword" required>
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">搜索</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- 显示搜索结果 -->
+    <div th:if="${not #lists.isEmpty(products)}">
+        <h2>搜索结果</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>名称</th>
+                    <th>价格</th>
+                    <th>描述</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="product : ${products}">
+                    <td th:text="${product.id}"></td>
+                    <td th:text="${product.name}"></td>
+                    <td th:text="${product.price}"></td>
+                    <td th:text="${product.description}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

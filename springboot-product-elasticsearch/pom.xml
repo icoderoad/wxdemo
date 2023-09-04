@@ -7,11 +7,11 @@
         <artifactId>demo</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
-	<artifactId>springboot-aop-logback</artifactId>
+	<artifactId>springboot-product-elasticsearch</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>AOPLogback</name>
-	<description>Demo AOPLogback project for Spring Boot</description>
+	<name>ProductElasticsearch</name>
+	<description>Demo ProductElasticsearch project for Spring Boot</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
@@ -53,6 +53,12 @@
 	        <artifactId>mysql-connector-java</artifactId>
 	        <version>${mysql-connector-java.version}</version>
 	    </dependency>
+
+	    <!-- Spring Data Elasticsearch -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+		</dependency>
 
 	</dependencies>
 
