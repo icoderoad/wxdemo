@@ -6,10 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @MapperScan("com.icoderoad.example.product.mapper")
-public class AopLogbackProductApplication {
+public class ProductElasticsearchApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AopLogbackProductApplication.class, args);
+		SpringApplication.run(ProductElasticsearchApplication.class, args);
 	}
 
 }

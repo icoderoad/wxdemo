@@ -15,8 +15,33 @@
 在`application.properties`中添加Elasticsearch连接信息：
 
 ```properties
-spring.data.elasticsearch.cluster-nodes=localhost:9200
-spring.data.elasticsearch.cluster-name=my-elasticsearch-cluster
+spring.elasticsearch.rest.uris=http://localhost:9200
+```
+调整 Product 类
+
+```java
+package com.icoderoad.example.product.entity;
+
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Setting;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+
+import lombok.Data;
+
+@Data
+@TableName("product")
+@Document(indexName = "product")
+@Setting(shards = 3, replicas = 0)
+public class Product {
+    @TableId(type = IdType.AUTO)
+    private Long id;
+    private String name;
+    private double price;
+    private String description;
+}
 ```
 
 ProductService 接口增加导入全部商品方法
