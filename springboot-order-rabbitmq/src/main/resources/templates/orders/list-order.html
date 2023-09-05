@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>订单管理</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>订单列表</h2>
+      	<div class="container mt-3">
+          <a href="/createOrderPage" class="btn btn-success">创建新订单</a>
+      	</div>
+        <table class="table table-bordered mt-10">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>订单号</th>
+                    <th>总金额</th>
+                    <th>下单日期</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 使用Thymeleaf语法动态填充订单数据 -->
+                <tr th:each="order : ${orders}">
+                    <td th:text="${order.id}"></td>
+                    <td th:text="${order.orderNumber}"></td>
+                    <td th:text="${order.totalAmount}"></td>
+                    <td th:text="${#dates.format(order.orderDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                    <td>
+                        <a th:href="@{'/editOrder/' + ${order.id}}" class="btn btn-primary btn-sm">编辑</a>
+                        <a th:href="@{'/deleteOrder/' + ${order.id}}" class="btn btn-danger btn-sm">删除</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

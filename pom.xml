@@ -14,6 +14,7 @@
 	<name>demo</name>
 	<description>icoderoad Demo project for Spring Boot</description>
 	 <modules>
+	 	<module>springboot-order-rabbitmq</module>
 		<module>springboot-product-elasticsearch</module>
 		<module>springboot-aop-logback</module>
 	 	<module>springboot-email-attachment</module>

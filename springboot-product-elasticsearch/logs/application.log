@@ -1,0 +1,292 @@
+2023-37-05 09:37:58 [main] INFO  c.i.e.p.AopLogbackProductApplication - Starting AopLogbackProductApplication using Java 1.8.0_341 on zjpdeMacBook-Pro.local with PID 35653 (/Users/zjp/code/java/wxdemo/demo/springboot-product-elasticsearch/target/classes started by zjp in /Users/zjp/code/java/wxdemo/demo/springboot-product-elasticsearch)
+2023-37-05 09:37:58 [main] DEBUG c.i.e.p.AopLogbackProductApplication - Running with Spring Boot v2.7.15, Spring v5.3.29
+2023-37-05 09:37:58 [main] INFO  c.i.e.p.AopLogbackProductApplication - No active profile set, falling back to 1 default profile: "default"
+2023-38-05 09:38:00 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Elasticsearch repositories in DEFAULT mode.
+2023-38-05 09:38:00 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 13 ms. Found 0 Elasticsearch repository interfaces.
+2023-38-05 09:38:00 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Reactive Elasticsearch repositories in DEFAULT mode.
+2023-38-05 09:38:00 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 3 ms. Found 0 Reactive Elasticsearch repository interfaces.
+2023-38-05 09:38:02 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2023-38-05 09:38:02 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2023-38-05 09:38:02 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2023-38-05 09:38:02 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.79]
+2023-38-05 09:38:02 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-38-05 09:38:02 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3790 ms
+2023-38-05 09:38:05 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2023-38-05 09:38:05 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2023-38-05 09:38:05 [main] INFO  c.i.e.p.AopLogbackProductApplication - Started AopLogbackProductApplication in 9.124 seconds (JVM running for 11.312)
+2023-38-05 09:38:31 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-38-05 09:38:31 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2023-38-05 09:38:31 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2023-38-05 09:38:32 [http-nio-8080-exec-1] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.data.elasticsearch.UncategorizedElasticsearchException: java.util.concurrent.ExecutionException: java.net.ConnectException: Connection refused; nested exception is ElasticsearchException[java.util.concurrent.ExecutionException: java.net.ConnectException: Connection refused]; nested: ExecutionException[java.net.ConnectException: Connection refused]; nested: ConnectException[Connection refused];] with root cause
+java.net.ConnectException: Connection refused
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:715)
+	at org.apache.http.impl.nio.reactor.DefaultConnectingIOReactor.processEvent(DefaultConnectingIOReactor.java:174)
+	at org.apache.http.impl.nio.reactor.DefaultConnectingIOReactor.processEvents(DefaultConnectingIOReactor.java:148)
+	at org.apache.http.impl.nio.reactor.AbstractMultiworkerIOReactor.execute(AbstractMultiworkerIOReactor.java:351)
+	at org.apache.http.impl.nio.conn.PoolingNHttpClientConnectionManager.execute(PoolingNHttpClientConnectionManager.java:221)
+	at org.apache.http.impl.nio.client.CloseableHttpAsyncClientBase$1.run(CloseableHttpAsyncClientBase.java:64)
+	at java.lang.Thread.run(Thread.java:750)
+2023-40-05 09:40:44 [main] INFO  c.i.e.p.AopLogbackProductApplication - Starting AopLogbackProductApplication using Java 1.8.0_341 on zjpdeMacBook-Pro.local with PID 40939 (/Users/zjp/code/java/wxdemo/demo/springboot-product-elasticsearch/target/classes started by zjp in /Users/zjp/code/java/wxdemo/demo/springboot-product-elasticsearch)
+2023-40-05 09:40:44 [main] DEBUG c.i.e.p.AopLogbackProductApplication - Running with Spring Boot v2.7.15, Spring v5.3.29
+2023-40-05 09:40:44 [main] INFO  c.i.e.p.AopLogbackProductApplication - No active profile set, falling back to 1 default profile: "default"
+2023-40-05 09:40:45 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Elasticsearch repositories in DEFAULT mode.
+2023-40-05 09:40:45 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 19 ms. Found 0 Elasticsearch repository interfaces.
+2023-40-05 09:40:45 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Reactive Elasticsearch repositories in DEFAULT mode.
+2023-40-05 09:40:45 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 2 ms. Found 0 Reactive Elasticsearch repository interfaces.
+2023-40-05 09:40:47 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2023-40-05 09:40:47 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2023-40-05 09:40:47 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2023-40-05 09:40:47 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.79]
+2023-40-05 09:40:47 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-40-05 09:40:47 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2982 ms
+2023-40-05 09:40:50 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2023-40-05 09:40:50 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2023-40-05 09:40:50 [main] INFO  c.i.e.p.AopLogbackProductApplication - Started AopLogbackProductApplication in 7.579 seconds (JVM running for 8.732)
+2023-41-05 09:41:25 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-41-05 09:41:25 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2023-41-05 09:41:25 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2023-41-05 09:41:25 [http-nio-8080-exec-1] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.data.elasticsearch.UncategorizedElasticsearchException: java.util.concurrent.ExecutionException: java.net.ConnectException: Connection refused; nested exception is ElasticsearchException[java.util.concurrent.ExecutionException: java.net.ConnectException: Connection refused]; nested: ExecutionException[java.net.ConnectException: Connection refused]; nested: ConnectException[Connection refused];] with root cause
+java.net.ConnectException: Connection refused
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:715)
+	at org.apache.http.impl.nio.reactor.DefaultConnectingIOReactor.processEvent(DefaultConnectingIOReactor.java:174)
+	at org.apache.http.impl.nio.reactor.DefaultConnectingIOReactor.processEvents(DefaultConnectingIOReactor.java:148)
+	at org.apache.http.impl.nio.reactor.AbstractMultiworkerIOReactor.execute(AbstractMultiworkerIOReactor.java:351)
+	at org.apache.http.impl.nio.conn.PoolingNHttpClientConnectionManager.execute(PoolingNHttpClientConnectionManager.java:221)
+	at org.apache.http.impl.nio.client.CloseableHttpAsyncClientBase$1.run(CloseableHttpAsyncClientBase.java:64)
+	at java.lang.Thread.run(Thread.java:750)
+2023-47-05 09:47:46 [main] INFO  c.i.e.p.AopLogbackProductApplication - Starting AopLogbackProductApplication using Java 1.8.0_341 on zjpdeMacBook-Pro.local with PID 54101 (/Users/zjp/code/java/wxdemo/demo/springboot-product-elasticsearch/target/classes started by zjp in /Users/zjp/code/java/wxdemo/demo/springboot-product-elasticsearch)
+2023-47-05 09:47:46 [main] DEBUG c.i.e.p.AopLogbackProductApplication - Running with Spring Boot v2.7.15, Spring v5.3.29
+2023-47-05 09:47:46 [main] INFO  c.i.e.p.AopLogbackProductApplication - No active profile set, falling back to 1 default profile: "default"
+2023-47-05 09:47:48 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Elasticsearch repositories in DEFAULT mode.
+2023-47-05 09:47:48 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 14 ms. Found 0 Elasticsearch repository interfaces.
+2023-47-05 09:47:48 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Reactive Elasticsearch repositories in DEFAULT mode.
+2023-47-05 09:47:48 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 49 ms. Found 0 Reactive Elasticsearch repository interfaces.
+2023-47-05 09:47:50 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2023-47-05 09:47:50 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2023-47-05 09:47:50 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2023-47-05 09:47:50 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.79]
+2023-47-05 09:47:50 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-47-05 09:47:50 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3445 ms
+2023-47-05 09:47:52 [main] WARN  o.s.data.convert.CustomConversions - Registering converter from class org.springframework.data.geo.Point to interface java.util.Map as writing converter although it doesn't convert to a store-supported type; You might want to check your annotation setup at the converter implementation
+2023-47-05 09:47:52 [main] WARN  o.s.data.convert.CustomConversions - Registering converter from interface java.util.Map to class org.springframework.data.geo.Point as reading converter although it doesn't convert from a store-supported type; You might want to check your annotation setup at the converter implementation
+2023-47-05 09:47:52 [main] WARN  o.s.data.convert.CustomConversions - Registering converter from class org.springframework.data.elasticsearch.core.geo.GeoPoint to interface java.util.Map as writing converter although it doesn't convert to a store-supported type; You might want to check your annotation setup at the converter implementation
+2023-47-05 09:47:52 [main] WARN  o.s.data.convert.CustomConversions - Registering converter from interface java.util.Map to class org.springframework.data.elasticsearch.core.geo.GeoPoint as reading converter although it doesn't convert from a store-supported type; You might want to check your annotation setup at the converter implementation
+2023-47-05 09:47:52 [main] WARN  o.s.data.convert.CustomConversions - Registering converter from class org.springframework.data.geo.Point to interface java.util.Map as writing converter although it doesn't convert to a store-supported type; You might want to check your annotation setup at the converter implementation
+2023-47-05 09:47:52 [main] WARN  o.s.data.convert.CustomConversions - Registering converter from interface java.util.Map to class org.springframework.data.geo.Point as reading converter although it doesn't convert from a store-supported type; You might want to check your annotation setup at the converter implementation
+2023-47-05 09:47:52 [main] WARN  o.s.data.convert.CustomConversions - Registering converter from class org.springframework.data.elasticsearch.core.geo.GeoPoint to interface java.util.Map as writing converter although it doesn't convert to a store-supported type; You might want to check your annotation setup at the converter implementation
+2023-47-05 09:47:52 [main] WARN  o.s.data.convert.CustomConversions - Registering converter from interface java.util.Map to class org.springframework.data.elasticsearch.core.geo.GeoPoint as reading converter although it doesn't convert from a store-supported type; You might want to check your annotation setup at the converter implementation
+2023-47-05 09:47:52 [main] INFO  o.s.d.e.support.VersionInfo - Version Spring Data Elasticsearch: 4.0.0.RELEASE
+2023-47-05 09:47:52 [main] INFO  o.s.d.e.support.VersionInfo - Version Elasticsearch Client in build: 7.6.2
+2023-47-05 09:47:52 [main] INFO  o.s.d.e.support.VersionInfo - Version Elasticsearch Client used: 7.17.12
+2023-47-05 09:47:52 [main] WARN  o.s.d.e.support.VersionInfo - Version mismatch in between Elasticsearch Clients build/use: 7.6.2 - 7.17.12
+2023-47-05 09:47:53 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2023-47-05 09:47:53 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2023-47-05 09:47:53 [main] INFO  c.i.e.p.AopLogbackProductApplication - Started AopLogbackProductApplication in 8.623 seconds (JVM running for 10.114)
+2023-48-05 09:48:17 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-48-05 09:48:17 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2023-48-05 09:48:17 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2023-48-05 09:48:18 [http-nio-8080-exec-1] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.data.elasticsearch.NoSuchIndexException: Index null not found.; nested exception is ElasticsearchException[java.util.concurrent.ExecutionException: java.net.ConnectException: Connection refused]; nested: ExecutionException[java.net.ConnectException: Connection refused]; nested: ConnectException[Connection refused];] with root cause
+java.net.ConnectException: Connection refused
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:715)
+	at org.apache.http.impl.nio.reactor.DefaultConnectingIOReactor.processEvent(DefaultConnectingIOReactor.java:174)
+	at org.apache.http.impl.nio.reactor.DefaultConnectingIOReactor.processEvents(DefaultConnectingIOReactor.java:148)
+	at org.apache.http.impl.nio.reactor.AbstractMultiworkerIOReactor.execute(AbstractMultiworkerIOReactor.java:351)
+	at org.apache.http.impl.nio.conn.PoolingNHttpClientConnectionManager.execute(PoolingNHttpClientConnectionManager.java:221)
+	at org.apache.http.impl.nio.client.CloseableHttpAsyncClientBase$1.run(CloseableHttpAsyncClientBase.java:64)
+	at java.lang.Thread.run(Thread.java:750)
+2023-53-05 09:53:40 [main] INFO  c.i.e.p.AopLogbackProductApplication - Starting AopLogbackProductApplication using Java 1.8.0_341 on zjpdeMacBook-Pro.local with PID 65260 (/Users/zjp/code/java/wxdemo/demo/springboot-product-elasticsearch/target/classes started by zjp in /Users/zjp/code/java/wxdemo/demo/springboot-product-elasticsearch)
+2023-53-05 09:53:40 [main] DEBUG c.i.e.p.AopLogbackProductApplication - Running with Spring Boot v2.7.15, Spring v5.3.29
+2023-53-05 09:53:40 [main] INFO  c.i.e.p.AopLogbackProductApplication - No active profile set, falling back to 1 default profile: "default"
+2023-53-05 09:53:41 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Elasticsearch repositories in DEFAULT mode.
+2023-53-05 09:53:41 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 17 ms. Found 0 Elasticsearch repository interfaces.
+2023-53-05 09:53:41 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Reactive Elasticsearch repositories in DEFAULT mode.
+2023-53-05 09:53:41 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 2 ms. Found 0 Reactive Elasticsearch repository interfaces.
+2023-53-05 09:53:42 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2023-53-05 09:53:42 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2023-53-05 09:53:42 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2023-53-05 09:53:42 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.79]
+2023-53-05 09:53:43 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-53-05 09:53:43 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2429 ms
+2023-53-05 09:53:45 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2023-53-05 09:53:45 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2023-53-05 09:53:45 [main] INFO  c.i.e.p.AopLogbackProductApplication - Started AopLogbackProductApplication in 6.647 seconds (JVM running for 7.915)
+2023-53-05 09:53:56 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-53-05 09:53:56 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2023-53-05 09:53:56 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2023-53-05 09:53:57 [http-nio-8080-exec-1] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.data.elasticsearch.UncategorizedElasticsearchException: java.util.concurrent.ExecutionException: java.net.ConnectException: Connection refused; nested exception is ElasticsearchException[java.util.concurrent.ExecutionException: java.net.ConnectException: Connection refused]; nested: ExecutionException[java.net.ConnectException: Connection refused]; nested: ConnectException[Connection refused];] with root cause
+java.net.ConnectException: Connection refused
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:715)
+	at org.apache.http.impl.nio.reactor.DefaultConnectingIOReactor.processEvent(DefaultConnectingIOReactor.java:174)
+	at org.apache.http.impl.nio.reactor.DefaultConnectingIOReactor.processEvents(DefaultConnectingIOReactor.java:148)
+	at org.apache.http.impl.nio.reactor.AbstractMultiworkerIOReactor.execute(AbstractMultiworkerIOReactor.java:351)
+	at org.apache.http.impl.nio.conn.PoolingNHttpClientConnectionManager.execute(PoolingNHttpClientConnectionManager.java:221)
+	at org.apache.http.impl.nio.client.CloseableHttpAsyncClientBase$1.run(CloseableHttpAsyncClientBase.java:64)
+	at java.lang.Thread.run(Thread.java:750)
+2023-57-05 09:57:30 [main] INFO  c.i.e.p.AopLogbackProductApplication - Starting AopLogbackProductApplication using Java 1.8.0_341 on zjpdeMacBook-Pro.local with PID 72484 (/Users/zjp/code/java/wxdemo/demo/springboot-product-elasticsearch/target/classes started by zjp in /Users/zjp/code/java/wxdemo/demo/springboot-product-elasticsearch)
+2023-57-05 09:57:30 [main] DEBUG c.i.e.p.AopLogbackProductApplication - Running with Spring Boot v2.7.15, Spring v5.3.29
+2023-57-05 09:57:30 [main] INFO  c.i.e.p.AopLogbackProductApplication - No active profile set, falling back to 1 default profile: "default"
+2023-57-05 09:57:31 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Elasticsearch repositories in DEFAULT mode.
+2023-57-05 09:57:31 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 17 ms. Found 0 Elasticsearch repository interfaces.
+2023-57-05 09:57:31 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Reactive Elasticsearch repositories in DEFAULT mode.
+2023-57-05 09:57:31 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 2 ms. Found 0 Reactive Elasticsearch repository interfaces.
+2023-57-05 09:57:33 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2023-57-05 09:57:33 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2023-57-05 09:57:33 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2023-57-05 09:57:33 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.79]
+2023-57-05 09:57:33 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-57-05 09:57:33 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3102 ms
+2023-57-05 09:57:36 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2023-57-05 09:57:36 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2023-57-05 09:57:36 [main] INFO  c.i.e.p.AopLogbackProductApplication - Started AopLogbackProductApplication in 7.672 seconds (JVM running for 9.058)
+2023-57-05 09:57:45 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-57-05 09:57:45 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2023-57-05 09:57:45 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2023-57-05 09:57:46 [http-nio-8080-exec-1] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is RestStatusException{status=400} org.springframework.data.elasticsearch.RestStatusException: Elasticsearch exception [type=illegal_argument_exception, reason=Failed to parse value [0] for setting [index.number_of_shards] must be >= 1]; nested exception is ElasticsearchStatusException[Elasticsearch exception [type=illegal_argument_exception, reason=Failed to parse value [0] for setting [index.number_of_shards] must be >= 1]]] with root cause
+org.elasticsearch.ElasticsearchStatusException: Elasticsearch exception [type=illegal_argument_exception, reason=Failed to parse value [0] for setting [index.number_of_shards] must be >= 1]
+	at org.elasticsearch.rest.BytesRestResponse.errorFromXContent(BytesRestResponse.java:178)
+	at org.elasticsearch.client.RestHighLevelClient.parseEntity(RestHighLevelClient.java:2484)
+	at org.elasticsearch.client.RestHighLevelClient.parseResponseException(RestHighLevelClient.java:2461)
+	at org.elasticsearch.client.RestHighLevelClient.internalPerformRequest(RestHighLevelClient.java:2184)
+	at org.elasticsearch.client.RestHighLevelClient.performRequest(RestHighLevelClient.java:2154)
+	at org.elasticsearch.client.RestHighLevelClient.performRequestAndParseEntity(RestHighLevelClient.java:2118)
+	at org.elasticsearch.client.IndicesClient.create(IndicesClient.java:152)
+	at org.springframework.data.elasticsearch.core.RestIndexTemplate.lambda$doCreate$0(RestIndexTemplate.java:86)
+	at org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate.execute(ElasticsearchRestTemplate.java:582)
+	at org.springframework.data.elasticsearch.core.RestIndexTemplate.doCreate(RestIndexTemplate.java:86)
+	at org.springframework.data.elasticsearch.core.AbstractIndexTemplate.create(AbstractIndexTemplate.java:82)
+	at com.icoderoad.example.product.service.impl.ProductServiceImpl.importProductsToElasticsearch(ProductServiceImpl.java:30)
+	at com.icoderoad.example.product.service.impl.ProductServiceImpl$$FastClassBySpringCGLIB$$df34e4d3.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy.invokeMethod(CglibAopProxy.java:386)
+	at org.springframework.aop.framework.CglibAopProxy.access$000(CglibAopProxy.java:85)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:704)
+	at com.icoderoad.example.product.service.impl.ProductServiceImpl$$EnhancerBySpringCGLIB$$3e378f53.importProductsToElasticsearch(<generated>)
+	at com.icoderoad.example.product.controller.ProductController.importProducts(ProductController.java:30)
+	at com.icoderoad.example.product.controller.ProductController$$FastClassBySpringCGLIB$$db2412a1.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:793)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.aop.framework.adapter.AfterReturningAdviceInterceptor.invoke(AfterReturningAdviceInterceptor.java:57)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
+	at com.icoderoad.example.product.controller.ProductController$$EnhancerBySpringCGLIB$$b1f8f25a.importProducts(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1072)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:965)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:529)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:209)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:481)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:130)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:926)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1790)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:750)
+	Suppressed: org.elasticsearch.client.ResponseException: method [PUT], host [http://10.80.253.53:9200], URI [/Product?master_timeout=30s&timeout=30s], status line [HTTP/1.1 400 Bad Request]
+{"error":{"root_cause":[{"type":"illegal_argument_exception","reason":"Failed to parse value [0] for setting [index.number_of_shards] must be >= 1"}],"type":"illegal_argument_exception","reason":"Failed to parse value [0] for setting [index.number_of_shards] must be >= 1"},"status":400}
+		at org.elasticsearch.client.RestClient.convertResponse(RestClient.java:347)
+		at org.elasticsearch.client.RestClient.performRequest(RestClient.java:313)
+		at org.elasticsearch.client.RestClient.performRequest(RestClient.java:288)
+		at org.elasticsearch.client.RestHighLevelClient.performClientRequest(RestHighLevelClient.java:2699)
+		at org.elasticsearch.client.RestHighLevelClient.internalPerformRequest(RestHighLevelClient.java:2171)
+		... 78 common frames omitted
+2023-11-05 10:11:26 [main] INFO  c.i.e.p.AopLogbackProductApplication - Starting AopLogbackProductApplication using Java 1.8.0_341 on zjpdeMacBook-Pro.local with PID 99104 (/Users/zjp/code/java/wxdemo/demo/springboot-product-elasticsearch/target/classes started by zjp in /Users/zjp/code/java/wxdemo/demo/springboot-product-elasticsearch)
+2023-11-05 10:11:26 [main] DEBUG c.i.e.p.AopLogbackProductApplication - Running with Spring Boot v2.7.15, Spring v5.3.29
+2023-11-05 10:11:26 [main] INFO  c.i.e.p.AopLogbackProductApplication - No active profile set, falling back to 1 default profile: "default"
+2023-11-05 10:11:27 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Elasticsearch repositories in DEFAULT mode.
+2023-11-05 10:11:27 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 12 ms. Found 0 Elasticsearch repository interfaces.
+2023-11-05 10:11:27 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Reactive Elasticsearch repositories in DEFAULT mode.
+2023-11-05 10:11:27 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 1 ms. Found 0 Reactive Elasticsearch repository interfaces.
+2023-11-05 10:11:29 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2023-11-05 10:11:29 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2023-11-05 10:11:29 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2023-11-05 10:11:29 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.79]
+2023-11-05 10:11:29 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-11-05 10:11:29 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3121 ms
+2023-11-05 10:11:33 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2023-11-05 10:11:34 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2023-11-05 10:11:34 [main] INFO  c.i.e.p.AopLogbackProductApplication - Started AopLogbackProductApplication in 9.063 seconds (JVM running for 10.193)
+2023-13-05 10:13:50 [main] INFO  c.i.e.p.AopLogbackProductApplication - Starting AopLogbackProductApplication using Java 1.8.0_341 on zjpdeMacBook-Pro.local with PID 4134 (/Users/zjp/code/java/wxdemo/demo/springboot-product-elasticsearch/target/classes started by zjp in /Users/zjp/code/java/wxdemo/demo/springboot-product-elasticsearch)
+2023-13-05 10:13:50 [main] DEBUG c.i.e.p.AopLogbackProductApplication - Running with Spring Boot v2.7.15, Spring v5.3.29
+2023-13-05 10:13:50 [main] INFO  c.i.e.p.AopLogbackProductApplication - No active profile set, falling back to 1 default profile: "default"
+2023-13-05 10:13:51 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Elasticsearch repositories in DEFAULT mode.
+2023-13-05 10:13:51 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 12 ms. Found 0 Elasticsearch repository interfaces.
+2023-13-05 10:13:51 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Reactive Elasticsearch repositories in DEFAULT mode.
+2023-13-05 10:13:51 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 4 ms. Found 0 Reactive Elasticsearch repository interfaces.
+2023-14-05 10:14:27 [main] INFO  c.i.e.p.AopLogbackProductApplication - Starting AopLogbackProductApplication using Java 1.8.0_341 on zjpdeMacBook-Pro.local with PID 5115 (/Users/zjp/code/java/wxdemo/demo/springboot-product-elasticsearch/target/classes started by zjp in /Users/zjp/code/java/wxdemo/demo/springboot-product-elasticsearch)
+2023-14-05 10:14:27 [main] DEBUG c.i.e.p.AopLogbackProductApplication - Running with Spring Boot v2.7.15, Spring v5.3.29
+2023-14-05 10:14:27 [main] INFO  c.i.e.p.AopLogbackProductApplication - No active profile set, falling back to 1 default profile: "default"
+2023-14-05 10:14:29 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Elasticsearch repositories in DEFAULT mode.
+2023-14-05 10:14:29 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 13 ms. Found 0 Elasticsearch repository interfaces.
+2023-14-05 10:14:29 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Reactive Elasticsearch repositories in DEFAULT mode.
+2023-14-05 10:14:29 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 7 ms. Found 0 Reactive Elasticsearch repository interfaces.
+2023-14-05 10:14:30 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2023-14-05 10:14:30 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2023-14-05 10:14:30 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2023-14-05 10:14:30 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.79]
+2023-14-05 10:14:31 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-14-05 10:14:31 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3229 ms
+2023-14-05 10:14:33 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2023-14-05 10:14:33 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2023-14-05 10:14:33 [main] INFO  c.i.e.p.AopLogbackProductApplication - Started AopLogbackProductApplication in 7.696 seconds (JVM running for 8.882)
+2023-14-05 10:14:58 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-14-05 10:14:58 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2023-14-05 10:14:58 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2023-15-05 10:15:00 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2023-15-05 10:15:00 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2023-15-05 10:15:00 [http-nio-8080-exec-1] DEBUG c.i.e.p.m.ProductMapper.selectList - ==>  Preparing: SELECT id,name,price,description FROM product
+2023-15-05 10:15:00 [http-nio-8080-exec-1] DEBUG c.i.e.p.m.ProductMapper.selectList - ==> Parameters: 
+2023-15-05 10:15:01 [http-nio-8080-exec-1] DEBUG c.i.e.p.m.ProductMapper.selectList - <==      Total: 10
+2023-15-05 10:15:01 [http-nio-8080-exec-1] INFO  c.i.example.product.aspect.LogAspect - {"description":null,"username":null,"startTime":1693880101554,"spendTime":null,"basePath":"http://localhost:8080","uri":"/import","url":"http://localhost:8080/import","method":"GET","ip":"0:0:0:0:0:0:0:1","parameter":"[]","result":"product/import-success"}
+2023-15-05 10:15:30 [http-nio-8080-exec-2] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'keyword' for method parameter type String is not present]
+2023-16-05 10:16:37 [http-nio-8080-exec-4] INFO  c.i.example.product.aspect.LogAspect - {"description":null,"username":null,"startTime":1693880197504,"spendTime":null,"basePath":"http://localhost:8080","uri":"/search","url":"http://localhost:8080/search","method":"GET","ip":"0:0:0:0:0:0:0:1","parameter":"[, {products=[]}]","result":"product/search-results"}
+2023-16-05 10:16:57 [http-nio-8080-exec-5] INFO  c.i.example.product.aspect.LogAspect - {"description":null,"username":null,"startTime":1693880217573,"spendTime":null,"basePath":"http://localhost:8080","uri":"/search","url":"http://localhost:8080/search","method":"GET","ip":"0:0:0:0:0:0:0:1","parameter":"[商, {products=[Product(id=13, name=商品 3, price=200.0, description=商品描述   3), Product(id=11, name=商品 1, price=100.0, description=商品描述   1), Product(id=16, name=商品 6, price=120.0, description=商品描述   6), Product(id=17, name=商品 7, price=80.0, description=商品描述   7), Product(id=18, name=商品 8, price=250.0, description=商品描述   8), Product(id=12, name=商品 2, price=150.0, description=商品描述   2), Product(id=14, name=商品 4, price=50.0, description=商品描述   4), Product(id=15, name=商品 5, price=300.0, description=商品描述   5), Product(id=19, name=商品 9, price=180.0, description=商品描述   9), Product(id=20, name=商品 10, price=90.0, description=商品描述   10)]}]","result":"product/search-results"}
+2023-17-05 10:17:05 [http-nio-8080-exec-6] INFO  c.i.example.product.aspect.LogAspect - {"description":null,"username":null,"startTime":1693880225267,"spendTime":null,"basePath":"http://localhost:8080","uri":"/search","url":"http://localhost:8080/search","method":"GET","ip":"0:0:0:0:0:0:0:1","parameter":"[商品 3, {products=[Product(id=13, name=商品 3, price=200.0, description=商品描述   3), Product(id=11, name=商品 1, price=100.0, description=商品描述   1), Product(id=16, name=商品 6, price=120.0, description=商品描述   6), Product(id=17, name=商品 7, price=80.0, description=商品描述   7), Product(id=18, name=商品 8, price=250.0, description=商品描述   8), Product(id=12, name=商品 2, price=150.0, description=商品描述   2), Product(id=14, name=商品 4, price=50.0, description=商品描述   4), Product(id=15, name=商品 5, price=300.0, description=商品描述   5), Product(id=19, name=商品 9, price=180.0, description=商品描述   9), Product(id=20, name=商品 10, price=90.0, description=商品描述   10)]}]","result":"product/search-results"}
+2023-17-05 10:17:14 [http-nio-8080-exec-7] INFO  c.i.example.product.aspect.LogAspect - {"description":null,"username":null,"startTime":1693880234686,"spendTime":null,"basePath":"http://localhost:8080","uri":"/search","url":"http://localhost:8080/search","method":"GET","ip":"0:0:0:0:0:0:0:1","parameter":"[3, {products=[Product(id=13, name=商品 3, price=200.0, description=商品描述   3)]}]","result":"product/search-results"}
