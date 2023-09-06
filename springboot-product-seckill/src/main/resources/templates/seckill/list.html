@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>秒杀商品列表</title>
+    <!-- 引入Bootstrap样式 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- 引入jQuery库 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>秒杀商品列表</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>名称</th>
+                    <th>价格</th>
+                    <th>库存</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="product : ${products}">
+                    <td th:text="${product.id}"></td>
+                    <td th:text="${product.name}"></td>
+                    <td th:text="${product.price}"></td>
+                    <td th:text="${product.stock}"></td>
+                    <td>
+                        <button class="btn btn-primary seckill-button" th:attr="data-product-id=${product.getId()}" >秒杀</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 添加JavaScript代码 -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // 点击秒杀按钮触发事件
+            $(".seckill-button").click(function () {
+                var productId = $(this).data("product-id");
+                var button = $(this); // 保存按钮的引用，以便在回调函数中禁用按钮
+                // 向后端发送秒杀请求
+                $.post("/seckill/" + productId, function (data) {
+                    if (data === "秒杀成功！") {
+                        alert("秒杀成功！");
+                        // 秒杀成功后，禁用按钮
+                        button.prop("disabled", true);
+                        // 刷新商品列表
+                        refreshProductList();
+                    } else {
+                        alert("秒杀失败，请稍后重试或商品已售罄。");
+                    }
+                });
+            });
+        	 // 刷新商品列表的函数
+            function refreshProductList() {
+                $.get("/seckill/list", function (html) {
+                    // 用获取到的新商品列表HTML替换原来的列表
+                    $(".container").html(html);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
