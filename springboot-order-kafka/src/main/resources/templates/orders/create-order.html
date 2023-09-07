@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>创建订单</title>
+</head>
+<body>
+    <h1>创建订单</h1>
+
+    <!-- 显示成功消息 -->
+    <div th:if="${successMessage}" class="alert alert-success">
+        <p th:text="${successMessage}"></p>
+    </div>
+
+    <!-- 订单创建表单 -->
+    <form method="post" action="/createOrder">
+        <label for="orderDate">订单日期：</label>
+        <input type="text" id="orderDate" name="orderDate" placeholder="请输入订单日期"><br>
+
+        <label for="customerId">客户ID：</label>
+        <input type="text" id="customerId" name="customerId" placeholder="请输入客户ID"><br>
+
+        <label for="totalAmount">总金额：</label>
+        <input type="text" id="totalAmount" name="totalAmount" placeholder="请输入总金额"><br>
+
+        <button type="submit">创建订单</button>
+    </form>
+</body>
+</html>
