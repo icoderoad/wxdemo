@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>用户列表</title>
+    <!-- 引入Bootstrap CSS文件 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>用户列表</h1>
+        
+        <!-- 使用Bootstrap表格样式 -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>用户ID</th>
+                    <th>用户名</th>
+                    <th>电子邮件</th>
+                    <!-- 其他字段的中文描述 -->
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 使用Thymeleaf迭代渲染用户列表 -->
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.userId}"></td>
+                    <td th:text="${user.username}"></td>
+                    <td th:text="${user.email}"></td>
+                   <td>
+                        <a th:href="@{'/edit/' + ${user._id}}" class="btn btn-warning">编辑</a>
+                        <a th:href="@{'/compareVersions?id=' + ${user._id}}" class="btn btn-info">版本比较</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- 添加用户按钮 -->
+        <a class="btn btn-primary" th:href="@{/add}">添加用户</a>
+    </div>
+</body>
+</html>

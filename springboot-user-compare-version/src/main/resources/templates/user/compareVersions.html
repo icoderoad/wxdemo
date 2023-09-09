@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>比较用户版本</title>
+    <!-- 引入Bootstrap CSS文件 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+    .added {
+		    background-color: #d9ffdb; /* 高亮显示新增部分的背景色 */
+	}
+		
+	.deleted {
+		    background-color: #ffd9d9; /* 高亮显示删除部分的背景色 */
+	}
+    
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>比较用户版本</h1>
+        
+        <h2>选择要比较的版本：</h2>
+        <form th:action="@{/compareVersions}" method="get">
+            <!-- 用户ID参数 -->
+            <input type="hidden" name="id" th:value="${userId}" />
+
+            <!-- 版本选择下拉菜单 -->
+            <select name="version1Index" id="version1">
+                <option value="-1">选择版本 1</option>
+                <!-- 使用Thymeleaf迭代渲染用户版本列表 -->
+                <option th:each="version, versionIndex : ${userVersions}" 
+                        th:value="${versionIndex.index}" 
+                        th:text="${'版本 ' + (versionIndex.index+1)}"></option>
+            </select>
+
+            <select name="version2Index" id="version2">
+                <option value="-1">选择版本 2</option>
+                <!-- 使用Thymeleaf迭代渲染用户版本列表 -->
+                <option th:each="version, versionIndex : ${userVersions}" 
+                        th:value="${versionIndex.index}" 
+                        th:text="${'版本 ' + (versionIndex.index+1)}"></option>
+            </select>
+
+            <button type="submit" class="btn btn-primary">比较</button>
+        </form>
+
+        <!-- 显示比较结果 -->
+        <div th:if="${comparisonResult != null}">
+            <h2>比较结果：</h2>
+            <p>用户名：</p>
+            <pre th:utext="${usernameDiff}"></pre>
+
+            <p>电子邮件：</p>
+            <pre th:utext="${emailDiff}"></pre>
+
+            <!-- 其他字段的比较结果 -->
+        </div>
+
+        <!-- 返回按钮 -->
+        <a class="btn btn-secondary" th:href="@{/}">返回</a>
+    </div>
+</body>
+</html>

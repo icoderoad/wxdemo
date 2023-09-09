@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>添加用户</title>
+    <!-- 引入Bootstrap CSS文件 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>添加用户</h1>
+        
+        <!-- 使用Bootstrap表单样式和中文字段描述 -->
+        <form th:action="@{/save}" method="post">
+            <div class="form-group">
+                <label for="userId">用户ID</label>
+                <input type="text" class="form-control" id="userId" name="userId" required="required">
+            </div>
+            <div class="form-group">
+                <label for="username">用户名</label>
+                <input type="text" class="form-control" id="username" name="username" required="required">
+            </div>
+            <div class="form-group">
+                <label for="email">电子邮件</label>
+                <input type="email" class="form-control" id="email" name="email" required="required">
+            </div>
+            <!-- 其他字段的中文描述和表单输入 -->
+            <button type="submit" class="btn btn-primary">保存</button>
+        </form>
+        
+        <!-- 返回按钮 -->
+        <a class="btn btn-secondary" th:href="@{/users}">返回</a>
+    </div>
+</body>
+</html>
