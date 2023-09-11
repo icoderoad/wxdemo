@@ -1,0 +1,32 @@
+<!-- login.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	 <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6"> <!-- 控制表单的宽度为屏幕的60% -->
+			    <h1>用户登陆页</h1>
+			    <form th:action="@{/login}" method="post">
+			        <div class="form-group">
+			            <label for="username">用户名:</label>
+			            <input type="text" class="form-control" id="username" name="username" required>
+			        </div>
+			        <div class="form-group">
+			            <label for="password">密码:</label>
+			            <input type="password" class="form-control" id="password" name="password" required>
+			        </div>
+			        <button type="submit" class="btn btn-primary">登陆</button>
+			    </form>
+			     <!-- 显示登录成功提示（如果有） -->
+			    <div th:if="${param.success}" class="alert alert-success">用户登陆成功!</div>
+			    <!-- 显示登录错误消息（如果有） -->
+			    <div th:if="${param.error}" class="alert alert-danger">用户名或密码验证失败</div>
+		   </div>
+		 </div>
+	</div>
+</body>
+</html>
