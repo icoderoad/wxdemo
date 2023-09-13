@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>文件上传和解压示例</title>
+    <!-- 引入Bootstrap样式 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>文件上传和解压示例</h1>
+
+        <!-- 显示压缩文件列表 -->
+        <ul th:if="${compressedFiles.size() > 0}" class="list-group">
+            <li th:each="compressedFile : ${compressedFiles}" class="list-group-item">
+                <a href="#" th:attr="data-compressed-file=${compressedFile}" th:onclick="getFileList(this)">
+                    <span class="glyphicon glyphicon-folder-close"></span>
+                    <span th:text="${compressedFile}"></span>
+                </a>
+            </li>
+        </ul>
+
+        <!-- 显示文件列表 -->
+        <ul th:id="fileList" class="list-group">
+            <!-- 文件列表会在点击压缩文件后由JavaScript填充 -->
+        </ul>
+    </div>
+
+    <!-- 文件上传表单 -->
+    <div class="container mt-4">
+        <form method="post" enctype="multipart/form-data" action="/upload">
+            <div class="mb-3">
+                <label for="file" class="form-label">选择压缩文件</label>
+                <input type="file" class="form-control" id="file" name="file" accept=".zip,.rar"/>
+            </div>
+            <button type="submit" class="btn btn-primary">上传文件</button>
+        </form>
+    </div>
+
+    <div th:if="${message}" class="container mt-4 alert alert-success" th:text="${message}"></div>
+    <div th:if="${error}" class="container mt-4 alert alert-danger" th:text="${error}"></div>
+
+    <!-- JavaScript函数来获取文件列表 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+
+        function getFileList(element) {
+        	 var compressedFile = element.getAttribute("data-compressed-file");
+            $.ajax({
+                url: '/get-file-list',
+                type: 'POST',
+                data: {compressedFile: compressedFile},
+                success: function (data) {
+                    var fileList = $('#fileList');
+                    fileList.empty();
+                    $.each(data, function (index, file) {
+                        fileList.append('<li class="list-group-item"><a href="/download?fileName=' + file + '">' + file + '</a></li>');
+                    });
+                },
+                error: function () {
+                    alert('无法获取文件列表。');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
