@@ -14,6 +14,7 @@
 	<name>demo</name>
 	<description>icoderoad Demo project for Spring Boot</description>
 	 <modules>
+	 	<module>springboot-chat-websocket-rabbitmq</module>
 	 	<module>springboot-compressed-files</module>
 	 	<module>springboot-files-minio</module>
 	 	<module>springboot-useronline-websocket</module>

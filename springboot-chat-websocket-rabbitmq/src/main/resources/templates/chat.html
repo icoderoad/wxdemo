@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>聊天应用</title>
+    <!-- 使用 jsdelivr.net 上的 Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 offset-md-4">
+                <h3>聊天应用</h3>
+                <div id="chat" class="border p-3" style="height: 300px; overflow-y: scroll;"></div>
+                <form id="messageForm" class="mt-3">
+                	<input type="text" id="sender" class="form-control" placeholder="你的名字" />
+                    <input type="text" id="message" class="form-control" placeholder="输入你的消息..." />
+                    <button type="submit" class="btn btn-primary mt-2">发送</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 使用 jsdelivr.net 上的 jQuery 和 Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+    
+    <!-- 使用 jsDelivr CDN 引入 sockjs-client 和 stomp.js -->
+	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1.6.1/dist/sockjs.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+
+    
+    <!-- 使用本地的 app.js -->
+    <script src="/js/app.js"></script>
+</body>
+</html>
