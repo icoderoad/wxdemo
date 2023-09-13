@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>员工列表</title>
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/bootstrap/5.0.0/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1>员工列表</h1>
+    <a th:href="@{/employee/add}" class="btn btn-primary">添加员工</a>
+    
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>员工ID</th>
+            <th>员工姓名</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="employee : ${employees}">
+            <td th:text="${employee.empId}">员工ID</td>
+            <td th:text="${employee.empName}">员工姓名</td>
+            <td>
+                <a th:href="@{/employee/edit/{empId}(empId=${employee.empId})}">编辑</a>
+                <a th:href="@{/employee/delete/{empId}(empId=${employee.empId})}">删除</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            <li th:class="${currentPage == 1} ? 'page-item disabled' : 'page-item'">
+                <a th:href="@{${currentPage == 1} ? '#' : '/employee/list?page=1'}" class="page-link">首页</a>
+            </li>
+            <li th:class="${currentPage == 1} ? 'page-item disabled' : 'page-item'">
+                <a th:href="${currentPage == 1 ? '#' : '/employee/list?page=' + (currentPage - 1)}" class="page-link">上一页</a>
+            </li>
+            <li th:class="${currentPage == totalPages} ? 'page-item disabled' : 'page-item'">
+                <a th:href="${currentPage == totalPages ? '#' : '/employee/list?page=' + (currentPage + 1)}" class="page-link">下一页</a>
+            </li>
+            <li th:class="${currentPage == totalPages} ? 'page-item disabled' : 'page-item'">
+                <a th:href="${currentPage == totalPages ? '#' : '/employee/list?page=' + totalPages}" class="page-link">末页</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+</body>
+</html>
