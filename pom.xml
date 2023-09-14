@@ -14,6 +14,7 @@
 	<name>demo</name>
 	<description>icoderoad Demo project for Spring Boot</description>
 	 <modules>
+	 	<module>springboot-product-drools</module>
 	 	<module>springboot-employee-content-negotiation</module>
 	 	<module>springboot-employee-jdbc</module>
 	 	<module>springboot-chat-websocket-rabbitmq</module>

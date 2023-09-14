@@ -1,0 +1,22 @@
+import java.math.BigDecimal
+import com.icoderoad.example.product.entity.Product
+import com.icoderoad.example.product.entity.Discount
+
+rule "Product Discount Rule 1"
+when
+    $product: Product(price > 100)
+    $discount : Discount()
+then
+    $product.setPrice($product.getPrice().multiply(new BigDecimal("0.9")));
+    update($product);
+end
+
+rule "Product Discount Rule 2"
+when
+    $product: Product(price > 50)
+    $discount: Discount()
+then
+    BigDecimal newPrice = $product.getPrice().multiply($discount.getDiscountPercentage());
+    $product.setPrice(newPrice);
+    update($product);
+end

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>商品折扣管理</title>
+    <!-- 引入Bootstrap CSS文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5 mb-4">商品折扣管理</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>商品名称</th>
+                    <th>价格</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 使用Thymeleaf迭代渲染商品数据 -->
+                <tr th:each="product : ${products}">
+                    <td th:text="${product.name}"></td>
+                    <td th:text="${product.price}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
