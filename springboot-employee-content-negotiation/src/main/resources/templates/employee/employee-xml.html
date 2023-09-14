@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>员工数据（XML格式）</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>员工数据（XML格式）</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>姓名</th>
+                    <th>简介</th>
+                    <th>薪水</th>
+                </tr>
+            </thead>
+            <tbody id="xmlEmployeeTable">
+                <!-- 此处将通过jQuery异步加载员工数据 -->
+            </tbody>
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.get("/employees?format=xml", function(data) {
+                 var employeeTable = $("#xmlEmployeeTable");
+                 $(data).find("item").each(function() {
+                     var employee = $(this);
+                     var row = "<tr>" +
+                         "<td>" + employee.children("id").text() + "</td>" +
+                         "<td>" + employee.children("name").text() + "</td>" +
+                         "<td>" + employee.children("description").text() + "</td>" +
+                         "<td>" + employee.children("salary").text() + "</td>" +
+                         "</tr>";
+                     employeeTable.append(row);
+                 });
+            });
+        });
+    </script>
+</body>
+</html>
