@@ -1,4 +1,4 @@
-Spring Boot中使用JDBC类型的会话存储实现用户登陆功能
+Spring Boot中使用 Redis 类型的会话存储实现用户登陆功能
 
 在Spring Boot中，`spring.session.store-type`属性用于配置会话（session）的存储方式。会话存储方式决定了如何管理和存储用户会话的信息，例如用户登录状态、会话数据等。以下是可能的`spring.session.store-type`属性的值以及它们的用法说明：
 
@@ -18,7 +18,7 @@ Spring Boot中使用JDBC类型的会话存储实现用户登陆功能
    - 您需要配置MongoDB连接信息。
    - 这种方式适用于需要在文档数据库中存储会话数据的情况。
 
-现在我们实现 JDBC 类型的会话存储，在Spring Boot中使用JDBC类型的会话存储，需要配置一个数据源（DataSource）以及相应的数据库表来存储会话信息。以下是一个完整的示例，包括用户表的DDL定义、用户登录验证、Thymeleaf视图等。
+现在我们实现 Redis 类型的会话存储，在Spring Boot中使用Redis类型的会话存储，需要配置一个数据源（DataSource）以及相应的数据库表来存储会话信息。以下是一个完整的示例，包括用户表的DDL定义、用户登录验证、Thymeleaf视图等。
 
 用户表的DDL定义，可以在MySQL数据库中运行：
 
@@ -43,6 +43,15 @@ CREATE TABLE session_users (
           <artifactId>lombok</artifactId>
           <optional>true</optional>
         </dependency>
+				 <!-- Spring Data Redis -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+				  <dependency>
+              <groupId>org.springframework.session</groupId>
+              <artifactId>spring-session-data-redis</artifactId>
+          </dependency>
         <!-- Spring Boot Thymeleaf Starter -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -53,12 +62,6 @@ CREATE TABLE session_users (
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-crypto</artifactId>
         </dependency>
-				<!-- Spring Session JDBC -->
-        <dependency>
-            <groupId>org.springframework.session</groupId>
-            <artifactId>spring-session-jdbc</artifactId>
-        </dependency>
-
         <!-- Spring Boot JDBC Starter -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -85,9 +88,11 @@ spring.datasource.username=your_username
 spring.datasource.password=your_password
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
-# 使用mysql数据库初始化会话表
-spring.session.store-type=jdbc
-spring.session.jdbc.initialize-schema=always
+spring.session.store-type=redis
+
+spring.redis.host=localhost
+spring.redis.port=6379
+spring.redis.password=123456
 
 # Spring Boot Thymeleaf配置
 spring.thymeleaf.prefix=classpath:/templates/
@@ -95,121 +100,115 @@ spring.thymeleaf.suffix=.html
 spring.thymeleaf.cache=false
 ```
 
-`spring.session.jdbc.initialize-schema` 是Spring Session JDBC的属性之一，用于配置是否初始化会话表的枚举值。该属性有以下几个可能的值：
-
-1. `never`（默认值）：这是默认值，表示不会自动初始化会话表。如果会话表不存在，Spring Session 不会尝试自动创建它。这个选项适用于已经手动创建了会话表的情况，或者您希望完全控制表的创建和管理。
-2. `embedded`：这个选项会告诉Spring Session 尝试使用嵌入式数据库来创建会话表。通常用于测试目的，以便在测试环境中使用内存数据库创建会话表。
-3. `always`：这个选项会告诉Spring Session 始终尝试自动创建会话表。如果会话表不存在，它会尝试创建它。这对于开发和测试环境中的快速原型开发很有用。
-4. `embedded-database`：这个选项类似于 `embedded`，但它只在使用内存数据库时才会尝试创建会话表。如果您的应用程序配置了内存数据库（例如H2或HSQLDB），则会话表将在该内存数据库中创建。
-
-实体类 `User.java`：
+创建一个实体类（User）来表示用户信息，并使用JPA注解映射到数据库表：
 
 ```java
 package com.icoderoad.example.user.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import lombok.Data;
 
 @Data
+@Entity
+@Table(name="session_users")
 public class User implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String username;
     private String password;
-
-    public User() {}
-
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
 }
 ```
 
-服务类 `UserService.java`：
+创建一个Repository接口来处理用户数据的数据库操作
 
 ```java
-package com.icoderoad.example.user.service;
+package com.icoderoad.example.user.repository;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.icoderoad.example.user.entity.User;
 
-@Service
-public class UserService {
-
-    private final JdbcTemplate jdbcTemplate;
-    private final PasswordEncoder passwordEncoder;
-
-    @Autowired
-    public UserService(JdbcTemplate jdbcTemplate, PasswordEncoder passwordEncoder) {
-        this.jdbcTemplate = jdbcTemplate;
-        this.passwordEncoder = passwordEncoder;
-    }
-
-    // 用户验证方法，检查用户名和密码是否匹配数据库中的记录
-    public boolean authenticateUser(String username, String password) {
-        // 查询数据库中的用户信息
-        String sql = "SELECT username, password FROM users WHERE username = ?";
-        try {
-            User user = jdbcTemplate.queryForObject(sql, new Object[]{username}, (rs, rowNum) ->
-                    new User(rs.getString("username"), rs.getString("password")));
-            if (user != null && passwordEncoder.matches(password, user.getPassword())) {
-                return true; // 用户验证成功
-            }
-        } catch (Exception e) {
-            // 用户不存在或发生其他异常
-        }
-        return false; // 用户验证失败
-    }
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
+    User findByUsername(String username);
 }
 ```
 
-控制类 `UserController.java`：
+创建一个Controller来处理用户登录和会话管理：
 
 ```java
+package com.icoderoad.example.user.controller;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
+
+import com.icoderoad.example.user.entity.User;
+import com.icoderoad.example.user.repository.UserRepository;
 
 @Controller
-@SessionAttributes("loggedInUser")
 public class UserController {
 
-    private final UserService userService;
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
+    private HttpSession httpSession;
+  
+    @Autowired
+    private PasswordEncoder passwordEncoder; // 注入密码加密器
 
     @GetMapping("/login")
-    public String showLoginForm() {
+    public String showLoginPage() {
         return "login";
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam String username, @RequestParam String password, Model model) {
-        // 使用UserService进行用户验证
-        if (userService.authenticateUser(username, password)) {
-            User user = new User(username, null); // 不暴露密码到会话
-            model.addAttribute("loggedInUser", user);
-            return "redirect:/dashboard";
+    public String loginUser(@RequestParam String username, @RequestParam String password, Model model) {
+        // 从数据库中查找用户
+        User user = userRepository.findByUsername(username);
+        
+        if (user != null && passwordEncoder.matches(password, user.getPassword())) {
+            // 验证成功，将用户信息保存到Session中
+            httpSession.setAttribute("user", user);
+            return "redirect:/dashboard"; // 重定向到用户仪表板
         } else {
+            // 验证失败，返回登录页面并显示错误消息
+            model.addAttribute("error", "用户名或密码错误");
             return "login";
         }
     }
 
     @GetMapping("/dashboard")
-    public String showDashboard(@SessionAttribute("loggedInUser") User loggedInUser, Model model) {
-        model.addAttribute("username", loggedInUser.getUsername());
-        return "dashboard";
+    public String showDashboard(Model model) {
+        User user = (User) httpSession.getAttribute("user");
+        if (user != null) {
+            model.addAttribute("user", user);
+            return "dashboard";
+        } else {
+            return "redirect:/login"; // 如果用户未登录，重定向到登录页面
+        }
+    }
+
+    @GetMapping("/logout")
+    public String logoutUser() {
+        httpSession.invalidate(); // 使Session失效
+        return "redirect:/login"; // 重定向到登录页面
     }
 }
 ```
@@ -282,16 +281,16 @@ public class SecurityConfig {
 
 ```html
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>用户登录</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-<div class="container">
+<div class="container mt-5">
     <h2>用户登录</h2>
-    <form action="/login" method="post">
+    <form method="post">
         <div class="form-group">
             <label for="username">用户名：</label>
             <input type="text" class="form-control" id="username" name="username" required>
@@ -300,7 +299,12 @@ public class SecurityConfig {
             <label for="password">密码：</label>
             <input type="password" class="form-control" id="password" name="password" required>
         </div>
-        <button type="submit" class="btn btn-primary">登录</button>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">登录</button>
+        </div>
+        <div th:if="${error}" class="alert alert-danger">
+            <span th:text="${error}"></span>
+        </div>
     </form>
 </div>
 </body>
@@ -311,19 +315,20 @@ public class SecurityConfig {
 
 ```html
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>仪表盘</title>
+    <title>用户仪表板</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-<div class="container">
-    <h2>欢迎, <span th:text="${username}"></span>!</h2>
-    <a href="/logout">退出登录</a>
+<div class="container mt-5">
+    <h2>用户仪表板</h2>
+    <p th:text="'欢迎，' + ${user.username} + '！'"></p>
+    <a class="btn btn-danger" th:href="@{/logout}">退出登录</a>
 </div>
 </body>
 </html>
 ```
 
-启动 Spring Boot 应用后，访问 http://localhost:8080/login ，显示登陆页面，输入用户名密码，用户名密码均输入 admin ,点击登陆，验证成功后转向仪表盘页面  http://localhost:8080/dashboard  ，可以看到登陆的用户为 admin 。查看数据库中 SPRING_SESSION 表，是否已经存在 session 数据。
+启动 Spring Boot 应用后，访问 http://localhost:8080/login ，显示登陆页面，输入用户名密码，用户名密码均输入 admin ,点击登陆，验证成功后转向仪表盘页面  http://localhost:8080/dashboard  ，可以看到登陆的用户为 admin ，可以查看Redis中是否存在会话数据以验证是否Redis 会话创建成功。

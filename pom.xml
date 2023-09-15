@@ -14,6 +14,7 @@
 	<name>demo</name>
 	<description>icoderoad Demo project for Spring Boot</description>
 	 <modules>
+	 	<module>springboot-user-session-redis</module>
 	 	<module>springboot-user-session-jdbc</module>
 	 	<module>springboot-product-drools</module>
 	 	<module>springboot-employee-content-negotiation</module>

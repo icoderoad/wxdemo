@@ -7,17 +7,27 @@
         <artifactId>demo</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
-	<artifactId>springboot-user-session-jdbc</artifactId>
+	<artifactId>springboot-user-session-redis</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>EmployeeContentNegotiation</name>
-	<description>Demo EmployeeContentNegotiation project for Spring Boot</description>
+	<name>UserSessionRedis</name>
+	<description>Demo UserSessionRedis project for Spring Boot</description>
 	<properties>
 		<java.version>1.8</java.version>
 		<minio.version>8.3.0</minio.version>
 	</properties>
 	<dependencies>
+         <!-- Spring Data Redis -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
         
+        <dependency>
+		    <groupId>org.springframework.session</groupId>
+		    <artifactId>spring-session-data-redis</artifactId>
+		</dependency>
+
 		 <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -32,12 +42,6 @@
 		<dependency>
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-crypto</artifactId>
-		</dependency>
-		
-		<!-- Spring Session JDBC -->
-		<dependency>
-		    <groupId>org.springframework.session</groupId>
-		    <artifactId>spring-session-jdbc</artifactId>
 		</dependency>
 
         <!-- MySQL Connector -->
