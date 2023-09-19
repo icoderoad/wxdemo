@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>即时通讯</title>
+    
+    <!-- 引入 Bootstrap CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
+
+    <!-- 自定义样式 -->
+    <style>
+        /* 添加自定义样式 */
+        /* 例如：修改背景颜色、字体样式等 */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5 mb-4">即时通讯</h1>
+
+        <!-- 聊天窗口 -->
+        <div class="row">
+            <div class="col-md-8">
+                <!-- 显示聊天消息的区域 -->
+                <div class="card">
+                    <div class="card-body">
+                        <div id="chatArea" class="overflow-auto" style="height: 400px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 消息发送表单 -->
+        <div class="mt-4">
+            <form id="messageForm">
+                <div class="form-group">
+                    <label for="recipient">选择用户：</label>
+                    <select class="form-control" id="recipient" name="recipient">
+                    	 <option value="system">系统消息</option>
+                          <option th:each="user : ${users}" th:value="${user.username}" th:text="${user.username}"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">消息内容：</label>
+                    <input type="text" class="form-control" id="message" name="message">
+                </div>
+                <button type="submit" class="btn btn-primary">发送消息</button>
+            </form>
+        </div>
+    </div>
+	
+	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1.5.0/dist/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script th:inline="javascript">
+        var stompClient = null;
+     	// 获取前面注入的currentUsername变量
+        var username = [[${currentUsername}]];
+
+     
+        function connectWebSocket() {
+            var socket = new SockJS('/ws');
+            var jwtToken = [[${jwtToken}]];
+            var headers = {
+            		  "jwt-token": jwtToken
+            		};
+            stompClient = Stomp.over(socket);
+
+            stompClient.connect(headers, function (frame) {
+                console.log('Connected: ' + frame);
+
+                // 构建订阅路径，替换{username}为实际的用户名
+                var subscriptionPath = '/user/' + username + '/queue/private';
+
+                // 订阅私有消息队列
+                stompClient.subscribe(subscriptionPath, function (message) {
+                    // 处理接收到的私有消息
+                    console.log("message:", message);
+                    var privateMessage = JSON.parse(message.body);
+                    displayPrivateMessage(privateMessage);
+                });
+
+                // 订阅系统消息队列
+                var systemSubscriptionPath = '/user/queue/system';
+                stompClient.subscribe(systemSubscriptionPath, function (message) {
+                    // 处理接收到的系统消息
+                    var systemMessage = JSON.parse(message.body);
+                    displaySystemMessage(systemMessage);
+                });
+            });
+        }
+
+        // WebSocket连接
+        connectWebSocket();
+
+        // 处理并显示私有消息
+        function displayPrivateMessage(privateMessage) {
+            // 在用户界面上显示私有消息，可以是聊天窗口或其他UI组件
+            var sender = privateMessage.sender;
+            var content = privateMessage.message;
+
+            // 在chatArea中追加消息显示
+            var messageDiv = document.createElement("div");
+            messageDiv.textContent = sender + ": " + content;
+            document.getElementById("chatArea").appendChild(messageDiv);
+        }
+
+        // 处理并显示系统消息
+        function displaySystemMessage(systemMessage) {
+            // 在用户界面上显示系统消息，可以是通知、提示或其他UI组件
+            var content = systemMessage.message;
+
+            // 在chatArea中追加系统消息显示
+            var messageDiv = document.createElement("div");
+            messageDiv.textContent = "系统消息: " + content;
+            document.getElementById("chatArea").appendChild(messageDiv);
+        }
+
+        // 处理消息发送表单的提交
+        document.getElementById("messageForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            var messageInput = document.getElementById("message");
+            var recipientSelect = document.getElementById("recipient");
+            var message = messageInput.value;
+            var recipient = recipientSelect.value;
+			console.log("recipient:", recipient);
+			var sendUrl = "/app/chat/" + recipient;
+			if( "system" == recipient ){
+				sendUrl = "/app/sendSystemMessage" ;
+			}
+
+            // 发送消息到服务器
+            stompClient.send(sendUrl , {}, JSON.stringify({
+                'recipient': recipient,
+                'message': message
+            }));
+
+           // messageInput.value = "";
+        });
+    </script>
+</body>
+</html>
