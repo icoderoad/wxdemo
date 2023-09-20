@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>扫码登录</title>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-body text-center" style="margin: 1px auto">
+						    <div id="qrcode"></div>
+ 					</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script>
+    <script>
+        var qr = new QRCode(document.getElementById("qrcode"), {
+            text: "",
+            width: 128,
+            height: 128
+        });
+
+        // 页面加载时，发起请求获取UUID
+        fetch("/generateUUID")
+            .then(response => response.text())
+            .then(uuid => {
+                // 将获取到的UUID设置为二维码的内容
+                var confirmUrl = "http://" + window.location.host + "/confirmLogin/"+ uuid;
+                console.log("confirmUrl:", confirmUrl);
+                qr.makeCode(confirmUrl);
+                
+                // 连接WebSocket
+                var socket = new WebSocket("ws://" + window.location.host + "/ws/login/" + uuid);
+
+                socket.onopen = function (event) {
+                    console.log("WebSocket连接已打开");
+                };
+
+                socket.onmessage = function (event) {
+                    var message = event.data;
+                    if (message === "确认登陆") {
+                    	window.location.href = "/loginSuccess/" + uuid;
+                    }
+                };
+
+                socket.onclose = function (event) {
+                    console.log("WebSocket连接已关闭");
+                };
+            })
+            .catch(error => console.error("获取UUID时出错:", error));
+
+       
+    </script>
+</body>
+</html>
