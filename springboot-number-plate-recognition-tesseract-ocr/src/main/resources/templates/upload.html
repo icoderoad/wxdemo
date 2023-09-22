@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>上传车牌图像</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>上传车牌图像</h1>
+        <form action="/recognize" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="imageFile">选择要上传的图像：</label>
+                <input type="file" class="form-control-file" id="imageFile" name="imageFile">
+            </div>
+            <button type="submit" class="btn btn-primary">上传并识别</button>
+        </form>
+    </div>
+</body>
+</html>

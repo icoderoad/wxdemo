@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>车牌识别结果</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>车牌识别结果</h1>
+        <p th:text="${result}"></p>
+        <a href="/upload" class="btn btn-primary">返回上传</a>
+    </div>
+</body>
+</html>
