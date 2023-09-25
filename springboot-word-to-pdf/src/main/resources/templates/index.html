@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>视频截图工具</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>上传视频并生成截图</h2>
+    <form method="POST" action="/upload" enctype="multipart/form-data">
+        <div class="form-group">
+            <input type="file" class="form-control-file" id="videoFile" name="videoFile">
+        </div>
+        <button type="submit" class="btn btn-primary">上传视频</button>
+    </form>
+    <br>
+    <div th:if="${message}">
+        <div class="alert alert-info" th:text="${message}"></div>
+    </div>
+    <div th:if="${screenshotUrls}">
+        <h3>生成的截图：</h3>
+        <div th:each="url : ${screenshotUrls}">
+            <img th:src="${url}" alt="截图">
+        </div>
+    </div>
+</div>
+</body>
+</html>

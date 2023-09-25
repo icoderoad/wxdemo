@@ -1,12 +1,22 @@
 package com.icoderoad.example.numberplate.controller;
 
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.Vector;
 
+import org.opencv.core.CvType;
 import org.opencv.core.Mat;
+import org.opencv.core.MatOfPoint;
+import org.opencv.core.Rect;
+import org.opencv.core.Scalar;
+import org.opencv.imgcodecs.Imgcodecs;
+import org.opencv.imgproc.Imgproc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,9 +33,15 @@ import com.icoderoad.example.numberplate.util.GenerateIdUtil;
 import com.icoderoad.example.numberplate.util.PlateUtil;
 
 import net.sourceforge.tess4j.Tesseract;
+import net.sourceforge.tess4j.TesseractException;
+import nu.pattern.OpenCV;
 
 @Controller
 public class LicensePlateRecognitionController {
+
+	 static {
+	    	OpenCV.loadLocally();
+	 }
 
     @Autowired
     private Tesseract tesseract;
@@ -94,5 +110,4 @@ public class LicensePlateRecognitionController {
         new File(targetPath).delete();  // 删除拷贝的临时文件
         return plates.toString();
     }
-
 }
