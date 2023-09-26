@@ -14,7 +14,8 @@
 	<name>demo</name>
 	<description>icoderoad Demo project for Spring Boot</description>
 	 <modules>
-	 	<module>springboot-word-to-pdf</module>
+	 	<module>springboot-video-transcoding</module>
+	 	<module>springboot-capture-video-shot</module>
 	 	<module>springboot-face-detection</module>
 	 	<module>springboot-number-plate-recognition-tesseract-ocr</module>
 	 	<module>springboot-scan-login-websocket</module>

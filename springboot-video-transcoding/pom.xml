@@ -7,11 +7,11 @@
         <artifactId>demo</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
-	<artifactId>springboot-word-to-pdf</artifactId>
+	<artifactId>springboot-video-transcoding</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>WordToPdf</name>
-	<description>Demo WordToPdf project for Spring Boot</description>
+	<name>VideoTranscoding</name>
+	<description>Demo VideoTranscoding project for Spring Boot</description>
 	<properties>
 		<java.version>1.8</java.version>
 		<tess4j.version>5.8.0</tess4j.version>
@@ -28,7 +28,7 @@
 	    <dependency>
 		    <groupId>org.bytedeco</groupId>
 		    <artifactId>javacv-platform</artifactId>
-		    <version>1.5.9</version> 
+		    <version>1.5.3</version> 
 		</dependency>
 	    
 	</dependencies>

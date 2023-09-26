@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>视频转码</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h1>视频转码和播放</h1>
+    <form method="post" action="/upload" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="file">选择视频文件</label>
+            <input type="file" name="file" id="file" class="form-control-file">
+        </div>
+        <button type="submit" class="btn btn-primary">上传并转码</button>
+    </form>
+
+    <hr>
+
+    <div th:if="${videoFileName != null}">
+        <h2>播放视频</h2>
+        <video controls th:src="@{'/videos/' + ${videoFileName}}" width="640" height="360"></video>
+    </div>
+</div>
+</body>
+</html>
