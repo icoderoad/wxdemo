@@ -14,6 +14,7 @@
 	<name>demo</name>
 	<description>icoderoad Demo project for Spring Boot</description>
 	 <modules>
+	 	<module>springboot-video-thumbnail</module>
 	 	<module>springboot-video-transcoding</module>
 	 	<module>springboot-capture-video-shot</module>
 	 	<module>springboot-face-detection</module>
