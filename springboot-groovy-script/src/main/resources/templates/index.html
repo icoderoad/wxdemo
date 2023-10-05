@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>动态配置脚本功能</title>
+    <!-- 导入Bootstrap样式 -->
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.3/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1>系统默认时间：</h1>
+    <p th:text="${currentTime}"></p>
+
+    <h1>当前星期几：</h1>
+    <p th:text="${currentDayOfWeek}"></p>
+
+    <!-- 在此处添加自定义脚本功能 -->
+
+</div>
+</body>
+</html>
