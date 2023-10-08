@@ -31,8 +31,10 @@ $(document).ready(function () {
                 },
                 success: function (data) {
                     if (data && data.thumbnailURL) {
+						console.log("thumbnailURL:", data.thumbnailURL);
                         // 显示生成的缩略图
                         $('#thumbnailImage').attr('src', data.thumbnailURL);
+                         $('#thumbnailImage').show();
                         alert('缩略图生成成功！');
                     } else {
                         alert('缩略图生成失败。');
@@ -111,7 +113,7 @@ $(document).ready(function () {
 	            }
 	        });
 	    }
-	
+		var totalFrames = 0;
 	  	// 获取视频总帧数的函数
 		function getTotalFrames(videoFilePath) {
 		    $.ajax({
@@ -121,7 +123,7 @@ $(document).ready(function () {
 		        dataType: 'json',
 		        success: function (data) {
 		            if (data && data.totalFrames) {
-		                const totalFrames = data.totalFrames;
+		                totalFrames = data.totalFrames;
 		                frameNumberInput.slider('option', 'max', totalFrames);
 		                frameNumberInput.val(1);
 		                // 在成功获取视频总帧数后启用输入框
@@ -135,25 +137,5 @@ $(document).ready(function () {
 		        }
 		    });
 		}
-	    // 模拟根据视频和帧号获取缩略图的函数
-	    function getThumbnailImage(videoFile, frameNumber) {
-	        // 计算缩略图URL
-	        const thumbnailURL = `/getThumbnail?frameNumber=${frameNumber}`;
-	
-	        // 更新视频播放器的当前时间
-	        const currentTime = (frameNumber / totalFrames) * videoPlayer.duration;
-	        videoPlayer.currentTime = currentTime;
-	
-	        return thumbnailURL;
-	    }
-
-	    // 当拖动条值发生变化时，获取并显示对应帧位置的缩略图
-	    frameNumberInput.on('slidechange', function (event, ui) {
-	        const frameNumber = ui.value;
-	        const videoFile = videoFileInput[0].files[0];
-	        if (videoFile) {
-	            const thumbnailURL = getThumbnailImage(videoFile, frameNumber);
-	            thumbnailImage.attr('src', thumbnailURL);
-	        }
-	    });
+	    
 });

@@ -2,16 +2,23 @@ package com.icoderoad.example.videothumbnail.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -89,9 +96,12 @@ public class ThumbnailController {
 
         try {
             String videoFilePath = uploadPath + "/" + videoFileName;
-            String thumbnailFilePath = uploadPath ;// 保存缩略图的文件路径
-           
-            String thumbnailName = "/"+ FilenameUtils.getBaseName(videoFileName)+"_output_001.png";
+            String thumbnailFilePath = uploadPath + "/thumbnails" ;// 保存缩略图的文件路径
+            File thumbnailDir = new File(thumbnailFilePath);
+            if( !thumbnailDir.exists() ) {
+            	thumbnailDir.mkdirs();
+            }
+            String thumbnailName = "/"+ FilenameUtils.getBaseName(videoFileName)+"_output_%03d.png";
          // 构建FFmpeg命令来生成图像序列，使用%03d命名模式
             String ffmpegCommand = ffmpegPath +
                     " -i " + videoFilePath +
@@ -105,12 +115,39 @@ public class ThumbnailController {
 
             if (exitCode == 1) {
                 // 缩略图生成成功，返回缩略图文件路径
-                return ResponseEntity.ok().body(new ThumbnailResponse(thumbnailName));
+            	thumbnailName = thumbnailName.replace("%03d", "001");
+                return ResponseEntity.ok().body(new ThumbnailResponse("/thumbnails" +thumbnailName));
             } else {
                 return ResponseEntity.badRequest().body("生成缩略图失败。");
             }
         } catch (IOException | InterruptedException e) {
             return ResponseEntity.badRequest().body("生成缩略图失败。");
+        }
+    }
+    
+  
+    
+    @GetMapping("/thumbnails/{filename}")
+    public ResponseEntity<Resource> getThumbnail(@PathVariable String filename) {
+        try {
+        	  String thumbnailFolderPath = uploadPath + "/thumbnails"; // 缩略图文件夹路径
+            Path thumbnailPath = Paths.get(thumbnailFolderPath).resolve(filename);
+
+            Resource resource = new UrlResource(thumbnailPath.toUri());
+
+            if (resource.exists() && resource.isReadable()) {
+                HttpHeaders headers = new HttpHeaders();
+                headers.setContentType(MediaType.IMAGE_JPEG); // 设置响应的媒体类型为图像
+
+                return ResponseEntity.ok()
+                        .headers(headers)
+                        .body(resource);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().build();
         }
     }
     

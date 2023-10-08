@@ -14,6 +14,8 @@
 	<name>demo</name>
 	<description>icoderoad Demo project for Spring Boot</description>
 	 <modules>
+	 	<module>springboot-user-ehcache</module>
+	 	<module>springboot-primary-second-datasource</module>
 	 	<module>springboot-groovy-script</module>
 	 	<module>springboot-video-thumbnail</module>
 	 	<module>springboot-video-transcoding</module>

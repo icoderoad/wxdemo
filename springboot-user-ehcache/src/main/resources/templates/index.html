@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户列表</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap/5.0.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">用户列表</h1>
+        <table class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>用户名</th>
+                    <th>Email</th>
+                    <th>年龄</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.id}"></td>
+                    <td th:text="${user.username}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td th:text="${user.age}"></td>
+                    <td>
+                        <a th:href="@{'/edit/' + ${user.id}}" class="btn btn-primary btn-sm">编辑</a>
+                        <a th:href="@{'/delete/' + ${user.id}}" class="btn btn-danger btn-sm">删除</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="/add" class="btn btn-success">添加用户</a>
+    </div>
+</body>
+</html>
